@@ -1,0 +1,21 @@
+[submodule "pack/editor/start/surround"]
+	path = pack/editor/start/surround
+	url = git@github.com:tpope/vim-surround.git
+[submodule "pack/editor/start/rsi"]
+	path = pack/editor/start/rsi
+	url = git@github.com:tpope/vim-rsi.git
+[submodule "pack/editor/start/yank-assassin"]
+	path = pack/editor/start/yank-assassin
+	url = git@github.com:svban/YankAssassin.vim.git
+[submodule "pack/browsing/start/jump"]
+	path = pack/browsing/start/jump
+	url = git@github.com:padde/jump.vim.git
+[submodule "pack/git/start/fugitive"]
+	path = pack/git/start/fugitive
+	url = git@github.com:tpope/vim-fugitive.git
+[submodule "pack/terminal/start/term-edit"]
+	path = pack/terminal/start/term-edit
+	url = git@github.com:chomosuke/term-edit.nvim.git
+[submodule "pack/quickfix/start/bqf"]
+	path = pack/quickfix/start/bqf
+	url = git@github.com:kevinhwang91/nvim-bqf.git
