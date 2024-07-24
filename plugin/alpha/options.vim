@@ -16,7 +16,6 @@ set sessionoptions=folds
 set nohidden
 set noshowmode
 set noruler
-set completeopt=menuone,noselect
 set shortmess+=FcCmW
 set exrc
 set cmdheight=0
