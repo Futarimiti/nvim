@@ -1,0 +1,39 @@
+[submodule "pack/editor/start/surround"]
+	path = pack/editor/start/surround
+	url = git@github.com:tpope/vim-surround.git
+[submodule "pack/editor/start/yank-assassin"]
+	path = pack/editor/start/yank-assassin
+	url = git@github.com:svban/YankAssassin.vim.git
+[submodule "pack/git/start/fugitive"]
+	path = pack/git/start/fugitive
+	url = git@github.com:tpope/vim-fugitive.git
+[submodule "pack/terminal/start/term-edit"]
+	path = pack/terminal/start/term-edit
+	url = git@github.com:chomosuke/term-edit.nvim.git
+[submodule "pack/database/opt/dbext"]
+	path = pack/database/opt/dbext
+	url = git@github.com:vim-scripts/dbext.vim.git
+[submodule "pack/util/start/cmdalias"]
+	path = pack/util/start/cmdalias
+	url = git@github.com:vim-scripts/cmdalias.vim.git
+[submodule "pack/git/start/rhubarb"]
+	path = pack/git/start/rhubarb
+	url = git@github.com:tpope/vim-rhubarb.git
+[submodule "pack/browsing/start/oil"]
+	path = pack/browsing/start/oil
+	url = git@github.com:stevearc/oil.nvim.git
+[submodule "pack/lsp/opt/lazydev"]
+	path = pack/lsp/opt/lazydev
+	url = git@github.com:folke/lazydev.nvim.git
+[submodule "pack/util/start/whatif"]
+	path = pack/util/start/whatif
+	url = git@github.com:AndrewRadev/whatif.vim.git
+[submodule "pack/make/start/dispatch"]
+	path = pack/make/start/dispatch
+	url = git@github.com:tpope/vim-dispatch.git
+[submodule "pack/quickfix/start/quicker"]
+	path = pack/quickfix/start/quicker
+	url = git@github.com:stevearc/quicker.nvim.git
+[submodule "pack/treesitter/start/treesitter"]
+	path = pack/treesitter/start/treesitter
+	url = git@github.com:nvim-treesitter/nvim-treesitter.git
