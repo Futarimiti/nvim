@@ -1,7 +1,9 @@
 let g:mapleader = '\'
 let g:maplocalleader = "\<Space>"
 nmap - \
+xmap - \
 nmap , \
+xmap , \
 
 nnoremap <C-C> <ESC>
 inoremap <C-C> <ESC>
