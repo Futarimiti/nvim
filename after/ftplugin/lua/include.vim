@@ -7,11 +7,11 @@ function! s:search_package_path(fname) abort
 endfunction
 
 function! s:search_runtime(fname) abort
-  let get_runtime = {pat -> nvim_get_runtime_file(pat, v:false)->get(0)}
-  return get_runtime($'lua/{a:fname}.lua') ?? 
-        \get_runtime($'lua/{a:fname}/init.lua') ??
-        \get_runtime($'fnl/{a:fname}.fnl') ?? 
-        \get_runtime($'fnl/{a:fname}/init.fnl')
+  let s:get_runtime = {pat -> nvim_get_runtime_file(pat, v:false)->get(0)}
+  return s:get_runtime($'lua/{a:fname}.lua') ?? 
+        \s:get_runtime($'lua/{a:fname}/init.lua') ??
+        \s:get_runtime($'fnl/{a:fname}.fnl') ?? 
+        \s:get_runtime($'fnl/{a:fname}/init.fnl')
 endfunction
 
 function! s:includeexpr(modname) abort
