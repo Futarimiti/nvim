@@ -22,3 +22,6 @@
 [submodule "pack/database/opt/dbext"]
 	path = pack/database/opt/dbext
 	url = git@github.com:vim-scripts/dbext.vim.git
+[submodule "pack/util/start/cmdalias"]
+	path = pack/util/start/cmdalias
+	url = git@github.com:vim-scripts/cmdalias.vim.git
