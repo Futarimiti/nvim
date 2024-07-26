@@ -6,19 +6,19 @@ nnoremap [l <CMD>silent lprevious<CR>
 nnoremap ]l <CMD>silent lnext<CR>
 
 function! s:toggle_loclist() abort
-	if win_getid()->getwininfo()[0].loclist
-		lclose
-	else
-		silent! lopen
-	endif
+  if win_getid()->getwininfo()[0].loclist
+    lclose
+  else
+    silent! lopen
+  endif
 endfunction
 
 function! s:toggle_quickfix() abort
-	if win_getid()->getwininfo()[0].quickfix
-		cclose
-	else
-		copen
-	endif
+  if win_getid()->getwininfo()[0].quickfix
+    cclose
+  else
+    copen
+  endif
 endfunction
 
 nnoremap <localleader>q <CMD>call <SID>toggle_quickfix()<CR>
