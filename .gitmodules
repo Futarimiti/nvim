@@ -25,3 +25,6 @@
 [submodule "pack/util/start/cmdalias"]
 	path = pack/util/start/cmdalias
 	url = git@github.com:vim-scripts/cmdalias.vim.git
+[submodule "pack/git/start/rhubarb"]
+	path = pack/git/start/rhubarb
+	url = git@github.com:tpope/vim-rhubarb.git
