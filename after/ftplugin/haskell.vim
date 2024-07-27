@@ -4,4 +4,11 @@ setlocal expandtab
 setlocal textwidth=90
 setlocal formatprg=stylish-haskell
 
-compiler ghc
+if !findfile('stack.yaml', '.;')->empty()
+  compiler stack
+" cabal must be run in the directory as *.cabal
+elseif !glob('*.cabal')->empty()
+  compiler cabal
+else
+  compiler ghc
+endif
