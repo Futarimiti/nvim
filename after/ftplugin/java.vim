@@ -2,4 +2,8 @@ setlocal textwidth=100
 setlocal formatprg=astyle
 setlocal foldmethod=indent
 
-compiler javac
+if !findfile('pom.xml', '.;')->empty()
+  compiler maven
+else
+  compiler javac
+endif
