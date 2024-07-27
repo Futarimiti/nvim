@@ -24,3 +24,6 @@ endfunction
 nnoremap <localleader>q <CMD>call <SID>toggle_quickfix()<CR>
 nnoremap <localleader>c <CMD>call <SID>toggle_quickfix()<CR>
 nnoremap <localleader>l <CMD>call <SID>toggle_loclist()<CR>
+
+Alias cfilter Cfilter
+Alias lfilter Lfilter
