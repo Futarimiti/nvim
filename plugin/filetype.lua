@@ -12,5 +12,6 @@ vim.filetype.add {
     ['package.yaml'] = maybe_stackyaml,
     ['stack.yaml'] = maybe_stackyaml,
     ['stack.yaml.lock'] = maybe_stackyaml,
+    ['pom.xml'] = 'maven.xml',
   },
 }
