@@ -12,7 +12,6 @@ set noexpandtab
 set splitright
 set signcolumn=yes:1
 set viewoptions-=curdir
-set sessionoptions=folds
 set nohidden
 set noshowmode
 set noruler
