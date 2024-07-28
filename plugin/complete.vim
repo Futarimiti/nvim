@@ -4,7 +4,10 @@ set completeopt=menuone,noselect
 " trigger char pattern customisable, by default '[a-z0-9._]'
 
 function! s:maybe_complete()
-  if exists('g:autocomplete_in_progress') || pumvisible() || state('m') == 'm'
+  if exists('g:autocomplete_in_progress')
+        \|| pumvisible()
+        \|| state('m') == 'm'
+        \|| &buftype != ''
     return
   endif
   if v:char =~? get(b:, 'autocomplete_pattern', '[a-z0-9._]')
