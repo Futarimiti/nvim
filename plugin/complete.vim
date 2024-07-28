@@ -1,16 +1,13 @@
 set completeopt=menuone,noselect
 
-" simple keyword autocomplete
-" trigger char pattern customisable, by default '[a-z0-9._]'
+" simple keyword autocomplete trigger by 'iskeyword' characters
 
 function! s:maybe_complete()
-  if exists('g:autocomplete_in_progress')
-        \|| pumvisible()
-        \|| state('m') == 'm'
-        \|| &buftype != ''
-    return
-  endif
-  if v:char =~? get(b:, 'autocomplete_pattern', '[a-z0-9._]')
+  if !exists('g:autocomplete_in_progress')
+        \&& !pumvisible()
+        \&& state('m') == ''
+        \&& &buftype == ''
+        \&& v:char =~# '\k'
     let g:autocomplete_in_progress = 1
     call feedkeys("\<C-N>", 'ni')
   endif
