@@ -1,11 +1,10 @@
 set completeopt=menuone,noselect
-set complete+=i,d
 
 " simple keyword autocomplete
 " trigger char pattern customisable, by default '[a-z0-9._]'
 
 function! s:maybe_complete()
-  if pumvisible() || state('m')
+  if pumvisible() || state('m') == 'm'
     return
   endif
   if v:char =~? get(b:, 'autocomplete_pattern', '[a-z0-9._]')
