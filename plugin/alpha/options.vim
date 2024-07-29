@@ -19,5 +19,5 @@ set shortmess+=FcCmW
 set cmdheight=0
 set showcmdloc=statusline
 set nofoldenable
-set keywordprg=
+set spelllang=en_gb
 set dictionary=/usr/share/dict/words
