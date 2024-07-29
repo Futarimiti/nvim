@@ -1,17 +1,10 @@
-local maybe_stackyaml = function(path, _)
-  -- A stack project always comes with (generated) cabal file
-  if vim.fn.glob(vim.fs.joinpath(vim.fs.dirname(path), '*.cabal')) ~= '' then
-    return 'stack.yaml'
-  else
-    return 'yaml'
-  end
-end
-
 vim.filetype.add {
   filename = {
-    ['package.yaml'] = maybe_stackyaml,
-    ['stack.yaml'] = maybe_stackyaml,
-    ['stack.yaml.lock'] = maybe_stackyaml,
+    ['package.yaml'] = function(path, _)
+      return vim.fn.findfile('stack.yaml', '.') == '' and 'yaml' or 'stack.yaml'
+    end,
+    ['stack.yaml'] = 'stack.yaml',
+    ['stack.yaml.lock'] = 'stack.yaml',
     ['pom.xml'] = 'maven.xml',
   },
 }
