@@ -28,3 +28,6 @@
 [submodule "pack/git/start/rhubarb"]
 	path = pack/git/start/rhubarb
 	url = git@github.com:tpope/vim-rhubarb.git
+[submodule "pack/browsing/start/oil"]
+	path = pack/browsing/start/oil
+	url = git@github.com:stevearc/oil.nvim.git

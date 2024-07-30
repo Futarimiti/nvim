@@ -7,7 +7,8 @@ setlocal formatprg=stylish-haskell
 if !findfile('stack.yaml', '.;')->empty()
   compiler stack
 " cabal must be run in the directory as *.cabal
-elseif !glob('*.cabal')->empty()
+" ignore 'wildignore'
+elseif !glob('*.cabal', v:true)->empty()
   compiler cabal
 else
   compiler ghc
