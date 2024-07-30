@@ -5,4 +5,10 @@ require('nvim-treesitter.configs').setup {
     disable = {},
     additional_vim_regex_highlighting = {},
   },
+  incremental_selection = {
+    enable = true,
+  },
+  indent = {
+    enable = true,
+  },
 }
