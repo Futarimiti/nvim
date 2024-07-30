@@ -6,5 +6,5 @@ vim.lsp.start {
   root_dir = vim.fs.root(0, { '.luarc.json' }),
 }
 
--- change this with better, official vim.lsp.complete() after it becomes stable
-vim.b.autocomplete_key = '<C-X><C-O>'
+-- change this with official vim.lsp.complete() after becoming stable
+vim.b.autocomplete_key = vim.keycode '<C-X><C-O>'
