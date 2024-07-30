@@ -1,0 +1,6 @@
+;; extends
+
+[
+  (bang)
+  (spread)
+] @keyword
