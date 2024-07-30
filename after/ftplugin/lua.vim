@@ -4,4 +4,3 @@ setlocal expandtab
 setlocal keywordprg=:help
 setlocal textwidth=100
 setlocal formatprg=stylua\ -s\ -
-setlocal foldmethod=indent
