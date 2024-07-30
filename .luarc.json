@@ -1,0 +1,20 @@
+{ "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json"
+, "runtime.version": "LuaJIT"
+, "diagnostics": { "enable": true
+                 , "disable": [ "need-check-nil", "missing-parameter", "cast-local-type" ]
+                 }
+, "workspace": { "library": [ "lua", "$VIMRUNTIME/lua", "pack/**/lua" ]
+               , "checkThirdParty": "Disable"
+               , "maxPreload": 2000
+               , "preloadFileSize": 1000
+               }
+, "type": { "weakNilCheck": true
+          , "weakUnionCheck": true
+          , "castNumberToInteger": true
+          }
+, "hint": { "enable": true
+          , "setType": true
+          }
+, "telemetry.enable": false
+, "format.enable": false
+}
