@@ -10,6 +10,7 @@ highlight! Identifier guifg=NvimLightGrey2
 highlight! Delimiter guifg=NvimLightGrey2
 highlight! Directory guifg=NvimLightGrey2 cterm=bold gui=bold
 highlight! Module cterm=italic gui=italic
+highlight! Special guifg=NvimLightBlue
 highlight! link Namespace Module
 highlight! Type cterm=bold gui=bold
 
