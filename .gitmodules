@@ -31,3 +31,6 @@
 [submodule "pack/browsing/start/oil"]
 	path = pack/browsing/start/oil
 	url = git@github.com:stevearc/oil.nvim.git
+[submodule "pack/navigation/start/aerial"]
+	path = pack/navigation/start/aerial
+	url = git@github.com:stevearc/aerial.nvim.git
