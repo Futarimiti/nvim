@@ -3,4 +3,3 @@ setlocal tabstop=2
 setlocal expandtab
 setlocal keywordprg=:help
 setlocal formatprg=stylua\ -s\ -
-setlocal foldmethod=indent

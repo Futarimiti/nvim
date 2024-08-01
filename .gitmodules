@@ -31,3 +31,6 @@
 [submodule "pack/browsing/start/oil"]
 	path = pack/browsing/start/oil
 	url = git@github.com:stevearc/oil.nvim.git
+[submodule "pack/highlighting/start/treesitter"]
+	path = pack/highlighting/start/treesitter
+	url = git@github.com:nvim-treesitter/nvim-treesitter.git
