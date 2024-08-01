@@ -17,6 +17,7 @@ highlight! Type cterm=bold gui=bold
 " treesitter
 
 highlight! link @namespace Namespace
+highlight! link @module Module
 highlight! link @string.special.path Underlined
 
 highlight! link @type.builtin @type
