@@ -13,12 +13,14 @@ highlight! Module cterm=italic gui=italic
 highlight! Special guifg=NvimLightBlue
 highlight! link Namespace Module
 highlight! Type cterm=bold gui=bold
+highlight! link Constructor Type
 
 " treesitter
 
 highlight! link @namespace Namespace
 highlight! link @module Module
 highlight! link @string.special.path Underlined
+highlight! link @constructor Constructor
 
 highlight! link @type.builtin @type
 highlight! link @variable.builtin @variable
