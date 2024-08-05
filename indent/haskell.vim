@@ -196,20 +196,12 @@ function! s:get_indents() abort
           \ : match(line, '\v.*<case>\s*\zs')
   endif
 
-  if line =~# '\v\\\s*<case>\s*%(--.*)?$'
+  if line =~# '\v\\\s*(<case>|<cases>)\s*%(--.*)?$'
     return match(line, '\v^\s*%(<where>|.*<let>)?\s*\zs') + &shiftwidth
   endif
 
-  if line =~# '\v\\\s*<case>\s*[[:alnum:](\-\"''\[]'
+  if line =~# '\v\\\s*(<case>|<cases>)\s*[[:alnum:](\-\"''\[]'
     return match(line, '\v\\\s*<case>\s*\zs\S')
-  endif
-
-  if line =~# '\v\\\s*<cases>\s*%(--.*)?$'
-    return match(line, '\v^\s*%(<where>|.*<let>)?\s*\zs') + &shiftwidth
-  endif
-
-  if line =~# '\v\\\s*<cases>\s*[[:alnum:](_\-\"''\[]' 
-    return match(line, '\v\\\s*<cases>\s*\zs\S')
   endif
 
   if nonblankline =~# '\v^.*[^|]\|[^|].*\='
