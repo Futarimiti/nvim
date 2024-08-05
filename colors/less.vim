@@ -14,6 +14,7 @@ highlight! Special guifg=NvimLightBlue
 highlight! link Namespace Module
 highlight! Type cterm=bold gui=bold
 highlight! link Constructor Type
+highlight! link Character String
 
 " treesitter
 
