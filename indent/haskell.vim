@@ -16,10 +16,14 @@ set cpo&vim
 " if the line is empty, choose the farthest indent;
 " else if the line has been indented in a suitable position already, keep it;
 " else if the line is between two indents, push to the farther one;
-" else if the line is indented outside the farthest possible indent, push it
-" back
+" else if the line is indented outside the farthest possible indent, push back
 function! s:get_indent() abort
-  let possible_indents = [s:get_indents()]->sort()
+  let raw_indents = s:get_indents()
+  if type(raw_indents) == v:t_number
+    return raw_indents
+  endif
+  assert_equal(v:t_list, type(raw_indents))
+  let possible_indents = sort(raw_indents)
   if empty(possible_indents)
     return -1
   endif
@@ -36,7 +40,7 @@ function! s:get_indent() abort
   return possible_indents[-1]
 endfunction
 
-" get all possible levels of indentation.
+" get all possible levels of indentation, return a list or a single number.
 " example: given last line "case3 x = case x of Just n  -> case n of 1 -> 1",
 " it is possible to start next line at line start, 10th or 31st position
 " hence [0, 10, 31] is returned
