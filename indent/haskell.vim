@@ -29,7 +29,7 @@ function! s:get_indent() abort
   endif
   let line = getline(v:lnum)
   let indent = indent(v:lnum)
-  if line =~# '\s*'
+  if line =~# '^\s*$'
     return possible_indents[-1]
   endif
   for pindent in possible_indents
@@ -106,6 +106,7 @@ function! s:get_indents() abort
     return s:indent_parenthesis()
   endif
 
+  " first non-blank line
   if s:prevnonblank(v:lnum - 1) == 0
     return 0
   endif
@@ -127,7 +128,7 @@ function! s:get_indents() abort
 
   let line = getline(v:lnum - 1)
 
-  " #if, #else, #endif, #include
+  " inside #if, #else, #endif, #include
   if nonblankline =~# '^\s*#'
     return 0
   endif
@@ -190,17 +191,34 @@ function! s:get_indents() abort
     endif
   endif
 
-  if line =~# '\v<case>.*<of>.*\s*%(--.*)?$' && line !~# '^\s*#'
-    return line =~# '\v<case>.*<of>\s*[[:alnum:](\-\"''\[]'
-          \ ? match(line, '\v<case>.*<of>\s*\zs\S')
-          \ : match(line, '\v.*<case>\s*\zs')
+  " case (v :: Void) of {}
+  " case x of { 1 -> 1; _ -> 0 }
+  if line =~# '\v<case>.*<of>\s*\{[^\}]*\}' && line !~# '^\s*#'
+    return -1
+  endif
+
+  " case x of ...
+  if line =~# '\v<case>.*<of>\s*[[:alnum:](\-\"''\[]' && line !~# '^\s*#'
+    return s:matches(line, '\v<case>.{-}<of>\s*\zs\S')->add(0)
+  endif
+
+  " case x of
+  " empty case allowed
+  if line =~# '\v<case>.*<of>\s*%(--.*)?$' && line !~# '^\s*#'
+    return match(line, '\v.*<case>\s*\zs')
   endif
 
   if line =~# '\v\\\s*(<case>|<cases>)\s*%(--.*)?$'
     return match(line, '\v^\s*%(<where>|.*<let>)?\s*\zs') + &shiftwidth
   endif
 
-  if line =~# '\v\\\s*(<case>|<cases>)\s*[[:alnum:](\-\"''\[]'
+  " use of _ in \case means this is last case
+  if line =~# '\v\\\s*<case>\s*[[:alnum:](\-\"''\[]'
+    return match(line, '\v\\\s*<case>\s*\zs\S')
+  endif
+
+  " use of _ in \cases does not necessarily mean this is last case
+  if line =~# '\v\\\s*<cases>\s*[[:alnum:](_\-\"''\[]'
     return match(line, '\v\\\s*<case>\s*\zs\S')
   endif
 
@@ -248,12 +266,18 @@ function! s:get_indents() abort
     endwhile
   endif
 
+  " multiway-if
+  if nonblankline =~# '\v\|.*-\>.*' && line =~# '\v^\s*%(--.*)?$'
+    return [0, match(line, '\v^\s*%(where\s+)?\zs')]
+  endif
+
+  " case
   if nonblankline =~# '\v-\>' && line =~# '\v^\s*%(--.*)?$' || nonblankline =~# '\v^\s*_\s*-\>'
     let i = s:prevnonblank(v:lnum - 1)
     while i
       let line = getline(i)
-      if getline(i) =~# '\v<case>'
-        return match(line, '\v^\s*%(where\s+)?\zs')
+      if line =~# '\v(<case>|<cases>)'
+        return [0, match(line, '\v^\s*%(where\s+)?\zs')]
       endif
       let i -= 1
     endwhile
@@ -275,6 +299,8 @@ function! s:get_indents() abort
     return s:indent('', '\v^\s*\zs.*<let>', 0, -1)
   endif
 
+  " after signature
+  " TODO: support multiline signature (align =>, -> with ::)
   if nonblankline =~# '::'
     return s:indent('', nonblankline =~# '\v,\s*%(--.*)?$' ? '\S' : '\v\{\s*\<\w+\s*::', 0, match(nonblankline, '\S'))
   endif
@@ -293,15 +319,15 @@ function! s:get_indents() abort
         if indent(i) <= indent
           let where_clause += 1
           if where_clause == v:lnum - s:prevnonblank(v:lnum - 1)
-            return match(line, '\v^.*<where>\s*\zs')
+            return [0, match(line, '\v^.*<where>\s*\zs')]
           endif
         endif
       endif
       if 0 <= indent(i) && indent(i) < indent && line !~# '\v<where>|^\s*\||^$'
-        return line =~# '\v^\s*[([{]' ? indent : indent(i)
+        return [0, line =~# '\v^\s*[([{]' ? indent : indent(i)]
       endif
       if line =~# '\v^\s*<%(class|instance)>' && found_where
-        return match(line, '\v^\s*<%(class|instance)>') + &shiftwidth
+        return [0, match(line, '\v^\s*<%(class|instance)>') + &shiftwidth]
       elseif line =~# '^\S'
         return 0
       endif
@@ -618,7 +644,7 @@ function! s:unindent_after_parenthesis(line, column) abort
     let i = begin[1]
     while i
       let line = getline(i)
-      if getline(i) =~# '\v<data>'
+      if line =~# '\v<data>'
         return match(line, '\v<data>')
       elseif line =~# '^\S'
         return -1
@@ -632,7 +658,7 @@ function! s:unindent_after_parenthesis(line, column) abort
   elseif getline(s:prevnonblank(begin[1] - 1)) =~# '\v<import>'
     return 0
   endif
-  return match(getline(begin[1]), '\v^\s*%(<where>)?\s*\zs')
+  return [0, match(getline(begin[1]), '\v^\s*%(<where>)?\s*\zs')]
 endfunction
 
 " where
