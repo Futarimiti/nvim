@@ -126,6 +126,7 @@ function! s:get_indents() abort
     return match(nonblankline, '^\s*\zs,')
   endif
 
+  " IMPORTANT!!!
   let line = getline(v:lnum - 1)
 
   " inside #if, #else, #endif, #include
@@ -226,6 +227,33 @@ function! s:get_indents() abort
     return s:after_guard()
   endif
 
+  " multiway-if entry
+  if nonblankline =~# '\v\|.*-\>.*' && line =~# '\v^\s*%(--.*)?$'
+    return [0, match(line, '\v^\s*%(where\s+)?\zs')]
+  endif
+
+  " case entry
+  " listing all possible indents, may be costy
+  if nonblankline =~# '\v-\>' && line =~# '\v^\s*%(--.*)?$' || nonblankline =~# '\v^\s*_\s*-\>'
+    let i = s:prevnonblank(v:lnum - 1)
+    let ret = [0]
+    while i
+      let line = getline(i)
+      if line =~# '\v\\\s*(<case>|<cases>)'
+        " \case \cases
+        let ret += s:matches(line, '\v\\\s*<case>\s*\zs')
+      elseif line =~# '\v<case>.{-}<of>\s*%(--.*)?$'
+        " case x of$
+        let ret += s:matches(line,'\v<case>\s*\zs.{-}<of>\s*%(--.*)?$')
+      elseif line =~# '\v<case>.{-}<of>\s*\S'
+        " case x of ...
+        let ret += s:matches(line, '\v<case>.{-}<of>\s*\zs\S')
+      endif
+      let i -= 1
+    endwhile
+    return ret
+  endif
+
   if nonblankline =~# '\v[)}\]]\s*%(--.*)?$'
     return s:unindent_after_parenthesis(s:prevnonblank(v:lnum - 1), match(nonblankline, '\v[)}\]]\s*%(--.*)?$'))
   endif
@@ -261,23 +289,6 @@ function! s:get_indents() abort
           break
         endif
         return match(line, '\v^\s*\zs')
-      endif
-      let i -= 1
-    endwhile
-  endif
-
-  " multiway-if
-  if nonblankline =~# '\v\|.*-\>.*' && line =~# '\v^\s*%(--.*)?$'
-    return [0, match(line, '\v^\s*%(where\s+)?\zs')]
-  endif
-
-  " case
-  if nonblankline =~# '\v-\>' && line =~# '\v^\s*%(--.*)?$' || nonblankline =~# '\v^\s*_\s*-\>'
-    let i = s:prevnonblank(v:lnum - 1)
-    while i
-      let line = getline(i)
-      if line =~# '\v(<case>|<cases>)'
-        return [0, match(line, '\v^\s*%(where\s+)?\zs')]
       endif
       let i -= 1
     endwhile
