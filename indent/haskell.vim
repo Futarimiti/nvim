@@ -7,7 +7,7 @@ endif
 let b:did_indent = 1
 
 setlocal indentexpr=s:get_indent()
-setlocal indentkeys=!^F,o,O,=where,=deriving,==,0=in,0=class,0=instance,0=data,0=type,0=else,0<bar>,0},0],0(,0),0#,0,0==,0==>,0=->
+setlocal indentkeys=!^F,o,O,=where,=deriving,==,0=in,0=class,0=instance,0=data,0=type,0=newtype,0=else,0<bar>,0},0],0(,0),0#,0,0==,0==>,0=->
 
 let s:save_cpo = &cpo
 set cpo&vim
@@ -68,14 +68,6 @@ function! s:get_indents() abort
     endif
   endif
 
-  " deriving
-  if line =~# '\v^\s*<deriving>'
-    if line =~# '\v^\s*}\s*deriving>'
-      return s:indent_parenthesis()
-    endif
-    return s:indent('\v<deriving>', '\v^.*<data>.*\zs\=', 0)
-  endif
-
   " class, instance
   if line =~# '\v^\s*<%(class|instance)>'
     return 0
@@ -108,6 +100,17 @@ function! s:get_indents() abort
 
   let nonblankline = getline(s:prevnonblank(v:lnum - 1))
 
+  " deriving
+  if line =~# '\v^\s*<deriving>'
+    if line =~# '\v^\s*}\s*deriving>'
+      return s:indent_parenthesis()
+    endif
+    if nonblankline =~# '\v^\s*\|'
+      return match(nonblankline, '\v^\s*\zs\|')
+    endif
+    return s:indent('\v<deriving>', '\v^.*\zs<(data|newtype)>.*\=', &shiftwidth)
+  endif
+
   " ^=>, ^->
   if line =~# '\v^\s*\=\>' || line =~# '\v^\s*-\>'
     for pat in ['::', '=>', '->']
@@ -125,7 +128,7 @@ function! s:get_indents() abort
   endif
 
   " data, type
-  if line =~# '\v^\s*<%(data|type)>' && nonblankline !~# '\v<%(class|instance)>.*<where>'
+  if line =~# '\v^\s*<%(data|type|newtype)>' && nonblankline !~# '\v<%(class|instance)>.*<where>'
     return 0
   endif
 
@@ -191,7 +194,7 @@ function! s:get_indents() abort
   endif
 
   if nonblankline =~# '\v<deriving>'
-    return s:indent('', '\v^\s*\zs<data>', 0)
+    return s:indent('', '\v^\s*\zs<(data|newtype)>', 0)
   endif
 
   if prevline =~# '\v<if>' && prevline !~# '\v^\s*#'
@@ -310,11 +313,11 @@ function! s:get_indents() abort
     endwhile
   endif
 
-  if nonblankline =~# '\v^\s*<data>.*\='
+  if nonblankline =~# '\v^\s*<(data|newtype)>.*\='
     if nonblankline =~# '\v\{-#\s*UNPACK\s*#-}' && getline(v:lnum) =~# '\v^\s*\{-#\s*UNPACK\s*#-}'
       return match(nonblankline, '\v\{-#\s*UNPACK\s*#-}')
     endif
-    return s:indent('', '\v^.*<data>.*\zs\=', 0)
+    return match(nonblankline, '\v^\s*\zs<(data|newtype)>') + &shiftwidth
   endif
 
   if nonblankline =~# '\v<let>\s+.*\=' && nonblankline !~# '\v<let>\s+.*\=.*<in>'
@@ -457,7 +460,7 @@ function! s:indent_comment() abort
       while i <= line('$') && (getline(i) =~# '^\s*--' || getline(i) ==# '')
         let i += 1
       endwhile
-      if getline(i) =~# '\v^\s*<%(class|instance|data)>|::.*%(-\>|-- *\^)'
+      if getline(i) =~# '\v^\s*<%(class|instance|data|newtype)>|::.*%(-\>|-- *\^)'
         return match(getline(i), '^\s*\zs\S')
       endif
     endif
@@ -570,8 +573,8 @@ function! s:indent_bar() abort
       return match(line, '\v\\\s*<cases>.*\zs\|')
     elseif line =~# '\v^\s*%(<where>)?.*[^|]\|[^|].*\='
       return match(line, '\v^\s*%(<where>)?.*[^|]\zs\|[^|].*\=')
-    elseif line =~# '\v<data>.*\='
-      return match(line, '\v^.*<data>.*\zs\=')
+    elseif line =~# '\v<(data|newtype)>.*\='
+      return match(line, '\v^.*<(data|newtype)>.*\zs\=')
     elseif line =~# '\v^\s*<where>\s*%(--.*)?$' && indent(i) < indent
           \ || line =~# '^\S'
       return indent + &shiftwidth
@@ -620,8 +623,8 @@ function! s:after_guard() abort
       endif
       let i -= 1
     endwhile
-  elseif nonblankline =~# '\v^\s*<data>.*\='
-    return match(line, '\v^.*<data>.*\zs\=')
+  elseif nonblankline =~# '\v^\s*<(data|newtype)>.*\='
+    return match(line, '\v^.*<(data|newtype)>.*\zs\=')
   else
     return match(line, '\v^.*[^|]\zs\|[^|].*\=')
   endif
@@ -665,8 +668,8 @@ function! s:unindent_after_parenthesis(line, column) abort
     let i = begin[1]
     while i
       let line = getline(i)
-      if line =~# '\v<data>'
-        return match(line, '\v<data>')
+      if line =~# '\v<(data|newtype)>'
+        return match(line, '\v<(data|newtype)>')
       elseif line =~# '^\S'
         return -1
       endif
@@ -744,11 +747,11 @@ function! s:after_where() abort
       let line = getline(i)
       if line =~# '\v^\s*<module>'
         return 0
-      elseif line =~# '\v^\s*%(<class>|<instance>|<data>|<type> +<family>)'
+      elseif line =~# '\v^\s*%(<class>|<instance>|<data>|<newtype>|<type> +<family>)'
         if line =~# '\v<where>\s*%(--.*)?$' && i != s:prevnonblank(v:lnum - 1)
           break
         endif
-        return match(line, '\v%(<class>|<instance>|<data>|<type> +<family>)') + &shiftwidth
+        return match(line, '\v%(<class>|<instance>|<data>|<newtype>|<type> +<family>)') + &shiftwidth
       elseif line =~# '\v^%(\S|\s*\k+\s*\=)' && line !~# '^--'
         return match(getline(s:prevnonblank(v:lnum - 1)), '\v<where>') + &shiftwidth
       endif
