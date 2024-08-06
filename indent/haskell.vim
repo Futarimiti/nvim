@@ -321,12 +321,12 @@ function! s:get_indents() abort
   elseif s:prevnonblank(v:lnum - 1) < v:lnum - 1 && line !~# '^\s*#'
     let i = s:prevnonblank(v:lnum - 1)
     let where_clause = 0
-    let found_where = 0
+    let found_where = v:false
     let indent = indent(s:prevnonblank(v:lnum - 1))
     while i
       let line = getline(i)
       if substitute(line, '--.*', '', 'g') =~# '\v<where>'
-        let found_where = 1
+        let found_where = v:true
         if indent(i) <= indent
           let where_clause += 1
           if where_clause == v:lnum - s:prevnonblank(v:lnum - 1)
@@ -338,6 +338,7 @@ function! s:get_indents() abort
         return [0, line =~# '\v^\s*[([{]' ? indent : indent(i)]
       endif
       if line =~# '\v^\s*<%(class|instance)>' && found_where
+        " empty class/instance is allowed
         return [0, match(line, '\v^\s*<%(class|instance)>') + &shiftwidth]
       elseif line =~# '^\S'
         return 0
