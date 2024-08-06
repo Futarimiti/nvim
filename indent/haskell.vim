@@ -189,7 +189,8 @@ function! s:get_indents() abort
     return match(nonblankline, '\v^\s*%(<where>|.*<let>)?\s*\zs') + &shiftwidth
   endif
 
-  if nonblankline =~# '\v<do>\s*[[:alnum:](_\-\"''\[]'
+  " $ for TemplateHaskell just in case
+  if nonblankline =~# '\v<do>\s*[[:alnum:](_\-\"\''\[\$]'
     return match(nonblankline, '\v<do>\s*\zs\S')
   endif
 
