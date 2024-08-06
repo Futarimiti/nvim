@@ -96,6 +96,20 @@ function! s:get_indents() abort
     return s:indent('\v^\s*<in>', '\v^.*<let>\s*\zs', 0, -1)
   endif
 
+  " ^=>, ^->
+  if line =~# '\v^\s*\=\>' || line =~# '\v^\s*-\>'
+    let nonblankline = getline(s:prevnonblank(v:lnum - 1))
+    if nonblankline =~# '::'
+      return match(nonblankline, '::')
+    elseif nonblankline =~# '=>'
+      return match(nonblankline, '=>')
+    elseif nonblankline =~# '->'
+      return match(nonblankline, '->')
+    else
+      throw '=>/-> not immediately following ::/->/=>'
+    endif
+  endif
+
   " =
   if line =~# '\v^\s*\='
     return s:indent_eq()
@@ -311,7 +325,6 @@ function! s:get_indents() abort
   endif
 
   " after signature
-  " TODO: support multiline signature (align =>, -> with ::)
   if nonblankline =~# '::'
     return s:indent('', nonblankline =~# '\v,\s*%(--.*)?$' ? '\S' : '\v\{\s*\<\w+\s*::', 0, match(nonblankline, '\S'))
   endif
