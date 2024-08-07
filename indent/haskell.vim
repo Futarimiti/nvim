@@ -147,6 +147,7 @@ function! s:get_indents() abort
     return 0
   endif
 
+  " after a line comment
   if nonblankline =~# '^\s*--'
     return match(nonblankline, '^\s*\zs--')
   endif
@@ -164,7 +165,7 @@ function! s:get_indents() abort
   endif
 
   " (
-  if getline(v:lnum) =~# '\v^\s*\('
+  if line =~# '\v^\s*\('
     let lnum = s:prevnonblank(v:lnum - 1)
     if lnum == 0
       return -1
@@ -353,7 +354,9 @@ function! s:get_indents() abort
           endif
         endif
       endif
-      if 0 <= indent(i) && indent(i) < indent && prevline !~# '\v<where>|^\s*\||^$'
+      if 0 <= indent(i)
+            \ && indent(i) < indent
+            \ && prevline !~# '\v<where>|^\s*\||^$'
         return [0, prevline =~# '\v^\s*[([{]' ? indent : indent(i)]
       endif
       if prevline =~# '\v^\s*<%(class|instance)>' && found_where
@@ -367,12 +370,17 @@ function! s:get_indents() abort
     return 0
   endif
 
-  if indent(s:prevnonblank(s:prevnonblank(v:lnum - 1) - 1)) < indent(s:prevnonblank(v:lnum - 1))
-        \ && nonblankline =~# '\v^\s*[-+/*$&<>=]' || getline(s:prevnonblank(s:prevnonblank(v:lnum - 1) - 1)) =~# '\v\=\s*%(--.*)?$'
-    return indent(s:prevnonblank(s:prevnonblank(v:lnum - 1) - 1))
+  " not sure what this do TODO
+  let prevnonblank = s:prevnonblank(v:lnum - 1)
+  let prevprevnonblank = s:prevnonblank(prevnonblank - 1)
+  if indent(prevprevnonblank) < indent(prevnonblank)
+        \ && nonblankline =~# '\v^\s*[-+/*$&<>=]'
+        \ || getline(prevprevnonblank) =~# '\v\=\s*%(--.*)?$'
+    return [0, indent(prevnonblank), indent(prevprevnonblank)]
   endif
 
-  return indent(s:prevnonblank(v:lnum - 1))
+  " last resort
+  return indent(prevnonblank)
 endfunction
 
 " prevnonblank while also skipping macros
@@ -632,6 +640,7 @@ function! s:after_guard() abort
 endfunction
 
 " }, ], )
+" TODO: use searchpairpos() instead of trickries
 function! s:indent_parenthesis() abort
   let view = winsaveview()
   execute 'normal! ' v:lnum . 'gg^'
