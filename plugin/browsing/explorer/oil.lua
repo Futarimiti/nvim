@@ -11,7 +11,7 @@ oil.setup {
         { '..', '.DS_Store', '.git', 'node_modules', '__pycache__', 'dist-newstyle' },
         name
       ) or vim
-        .iter({ '.o', '.obj', '.dyn_hi', 'dyn_o', '.class', '.ibc', '.pyc', '*.a', '*.hi' })
+        .iter({ '.o', '.obj', '.dyn_hi', 'dyn_o', '.class', '.ibc', '.pyc', '.a', '.hi' })
         :any(function(suffix) return vim.endswith(name, suffix) end)
     end,
   },
