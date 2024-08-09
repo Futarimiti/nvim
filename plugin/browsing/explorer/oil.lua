@@ -25,7 +25,7 @@ local oil_toggle = function(path)
   if oil_windows:peek() then
     oil_windows:each(function(win) pcall(vim.api.nvim_win_close, win.winid, true) end)
   else
-    vim.cmd 'topleft 30vsplit'
+    vim.cmd 'topleft 40vsplit'
     oil.open(path)
   end
 end
