@@ -11,3 +11,5 @@ xnoremap <C-C> <ESC>
 nnoremap U <C-R>
 nnoremap <leader>o <CMD>!open %:h<CR>
 inoremap <C-Z> <C-O>zz
+
+cnoremap <C-;> <C-F>
