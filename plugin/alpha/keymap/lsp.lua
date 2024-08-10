@@ -17,5 +17,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     if capabilities.typeDefinitionProvider then
       vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition)
     end
+    if capabilities.hoverProvider and vim.bo.keywordprg == '' then
+      vim.keymap.set('n', 'K', vim.lsp.buf.hover)
+    end
   end,
 })
