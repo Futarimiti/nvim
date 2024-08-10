@@ -31,3 +31,6 @@
 [submodule "pack/browsing/start/oil"]
 	path = pack/browsing/start/oil
 	url = git@github.com:stevearc/oil.nvim.git
+[submodule "pack/lsp/opt/lazydev"]
+	path = pack/lsp/opt/lazydev
+	url = git@github.com:folke/lazydev.nvim.git
