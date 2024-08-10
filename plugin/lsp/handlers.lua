@@ -24,6 +24,7 @@ vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_hover] = function(_, resu
   local buf = vim.api.nvim_create_buf(false, true)
   vim.lsp.util.stylize_markdown(buf, contents, {})
   vim.bo[buf].filetype = 'text'
+  vim.bo[buf].keywordprg = ':help'
   vim.cmd 'pclose!'
   local win = vim.api.nvim_open_win(buf, false, {
     height = vim.o.previewheight,
@@ -63,6 +64,7 @@ vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_signatureHelp] = function
   local buf = vim.api.nvim_create_buf(false, true)
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
   vim.bo[buf].filetype = 'markdown'
+  vim.bo[buf].keywordprg = ':help'
   vim.cmd 'pclose!'
   local win = vim.api.nvim_open_win(buf, false, {
     height = vim.o.previewheight,
