@@ -1,5 +1,5 @@
 vim.keymap.set('n', '<C-K>', vim.lsp.buf.hover)
-vim.keymap.set('n', '<C-S>', vim.lsp.buf.signature_help)
+vim.keymap.set('i', '<C-S>', vim.lsp.buf.signature_help)
 vim.keymap.set('n', '<CR>', vim.lsp.buf.code_action)
 vim.keymap.set('n', 'gr', vim.lsp.buf.references)
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
