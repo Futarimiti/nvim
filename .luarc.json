@@ -3,7 +3,7 @@
 , "diagnostics": { "enable": true
                  , "disable": [ "need-check-nil", "missing-parameter", "cast-local-type" ]
                  }
-, "workspace": { "library": [ "lua", "$VIMRUNTIME/lua", "pack/**/lua" ]
+, "workspace": { "library": [ "lua", "$VIMRUNTIME/lua" ]
                , "checkThirdParty": "Disable"
                , "maxPreload": 2000
                , "preloadFileSize": 1000
