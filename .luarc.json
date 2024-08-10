@@ -17,4 +17,5 @@
           }
 , "telemetry.enable": false
 , "format.enable": false
+, "semantic.enable": false
 }
