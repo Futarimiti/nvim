@@ -1,4 +1,6 @@
 vim.opt.completeopt = { 'menuone', 'noselect' }
+-- uncomment after fuzzy-matching support for insert-completion becomes stable
+-- vim.opt.completeopt:append 'fuzzy'
 
 local autocomplete_group = vim.api.nvim_create_augroup('simple-autocomplete', {})
 
@@ -7,7 +9,7 @@ local autocomplete_in_progress = false
 vim.api.nvim_create_autocmd('InsertCharPre', {
   desc = 'trigger autocomplete based on character inserted',
   group = autocomplete_group,
-  callback = function(args)
+  callback = function()
     if
       autocomplete_in_progress
       or vim.fn.pumvisible() == 1
@@ -24,22 +26,9 @@ vim.api.nvim_create_autocmd('InsertCharPre', {
       return
     end
 
-    local inserted_trigger_character = vim
-      .iter(vim.lsp.get_clients {
-        bufnr = args.buf,
-        method = vim.lsp.protocol.Methods.textDocument_completion,
-      })
-      :map(
-        function(client)
-          return vim.tbl_get(
-            client,
-            'server_capabilities',
-            'completionProvider',
-            'triggerCharacters'
-          )
-        end
-      )
-      :any(function(trigger_characters) return vim.tbl_contains(trigger_characters, vim.v.char) end)
+    local inserted_trigger_character =
+      vim.tbl_contains(vim.b.lsp_trigger_characters or {}, vim.v.char)
+
     if inserted_trigger_character then
       local omnifunc = vim.bo.omnifunc
       -- XXX change this mess to vim.lsp.completion.trigger after becoming stable
@@ -64,4 +53,28 @@ vim.api.nvim_create_autocmd({ 'TextChangedP', 'TextChangedI' }, {
   desc = 'restore autocomplete',
   group = autocomplete_group,
   callback = function() autocomplete_in_progress = false end,
+})
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'cache lsp trigger_characters into vim.b.lsp_trigger_characters',
+  group = autocomplete_group,
+  callback = function(args)
+    vim.b.lsp_trigger_characters = vim
+      .iter(vim.lsp.get_clients {
+        bufnr = args.buf,
+        method = vim.lsp.protocol.Methods.textDocument_completion,
+      })
+      :map(
+        function(client)
+          return vim.tbl_get(
+            client,
+            'server_capabilities',
+            'completionProvider',
+            'triggerCharacters'
+          )
+        end
+      )
+      :flatten()
+      :totable()
+  end,
 })
