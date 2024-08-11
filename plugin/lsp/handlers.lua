@@ -23,8 +23,9 @@ vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_hover] = function(_, resu
   end
   local buf = vim.api.nvim_create_buf(false, true)
   vim.lsp.util.stylize_markdown(buf, contents, {})
-  vim.bo[buf].filetype = 'text'
+  vim.bo[buf].syntax = 'OFF'
   vim.bo[buf].keywordprg = ':help'
+  vim.bo[buf].bufhidden = 'wipe'
   vim.cmd 'pclose!'
   local win = vim.api.nvim_open_win(buf, false, {
     height = vim.o.previewheight,
@@ -32,6 +33,8 @@ vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_hover] = function(_, resu
     win = 0,
   })
   vim.wo[win].previewwindow = true
+  vim.wo[win].conceallevel = 3
+  vim.wo[win].foldenable = false
 end
 
 vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_signatureHelp] = function(
@@ -65,6 +68,8 @@ vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_signatureHelp] = function
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
   vim.bo[buf].filetype = 'markdown'
   vim.bo[buf].keywordprg = ':help'
+  vim.bo[buf].bufhidden = 'wipe'
+  vim.treesitter.start(buf)
   vim.cmd 'pclose!'
   local win = vim.api.nvim_open_win(buf, false, {
     height = vim.o.previewheight,
@@ -72,6 +77,8 @@ vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_signatureHelp] = function
     win = 0,
   })
   vim.wo[win].previewwindow = true
+  vim.wo[win].conceallevel = 3
+  vim.wo[win].foldenable = false
   if hl then
     -- Highlight the second line if the signature is wrapped in a Markdown code block.
     local line = vim.startswith(lines[1], '```') and 1 or 0
