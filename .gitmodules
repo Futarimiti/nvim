@@ -34,3 +34,6 @@
 [submodule "pack/lsp/opt/lazydev"]
 	path = pack/lsp/opt/lazydev
 	url = git@github.com:folke/lazydev.nvim.git
+[submodule "pack/util/start/whatif"]
+	path = pack/util/start/whatif
+	url = git@github.com:AndrewRadev/whatif.vim.git
