@@ -2,7 +2,7 @@ vim.opt.completeopt = { 'menuone', 'noselect' }
 -- uncomment after fuzzy-matching support for insert-completion becomes stable
 -- vim.opt.completeopt:append 'fuzzy'
 
-local autocomplete_group = vim.api.nvim_create_augroup('simple-autocomplete', {})
+local autocomplete_group = vim.api.nvim_create_augroup('autocomplete', {})
 
 local autocomplete_in_progress = false
 
