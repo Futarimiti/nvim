@@ -8,7 +8,7 @@ vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_hover] = function(_, resu
     return
   end
   if not (result and result.contents) then
-    if config.silent ~= true then vim.notify 'No hover information available' end
+    if not config.silent then vim.notify 'No hover information available' end
     return
   end
   local contents ---@type string[]
@@ -18,7 +18,7 @@ vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_hover] = function(_, resu
     contents = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
   end
   if vim.tbl_isempty(contents) then
-    if config.silent ~= true then vim.notify 'No hover information available' end
+    if not config.silent then vim.notify 'No hover information available' end
     return
   end
   local buf = vim.api.nvim_create_buf(false, true)
@@ -52,7 +52,7 @@ vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_signatureHelp] = function
   -- When use `autocmd CompleteDone <silent><buffer> lua vim.lsp.buf.signature_help()` to call signatureHelp handler
   -- If the completion item doesn't have signatures It will make noise. Change to use `print` that can use `<silent>` to ignore
   if not (result and result.signatures and result.signatures[1]) then
-    if config.silent ~= true then print 'No signature help available' end
+    if not config.silent then print 'No signature help available' end
     return
   end
   local client = assert(vim.lsp.get_client_by_id(ctx.client_id))
@@ -61,7 +61,7 @@ vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_signatureHelp] = function
   local ft = vim.bo[ctx.bufnr].filetype
   local lines, hl = vim.lsp.util.convert_signature_help_to_markdown_lines(result, ft, triggers)
   if not lines or vim.tbl_isempty(lines) then
-    if config.silent ~= true then print 'No signature help available' end
+    if not config.silent then print 'No signature help available' end
     return
   end
   local buf = vim.api.nvim_create_buf(false, true)
