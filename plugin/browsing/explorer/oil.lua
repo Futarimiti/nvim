@@ -25,7 +25,7 @@ oil.setup {
   delete_to_trash = true,
   skip_confirm_for_simple_edits = true,
   watch_for_changes = true,
-  win_options = { number = false },
+  win_options = { number = false, signcolumn = 'yes:1' },
   view_options = {
     show_hidden = false,
     is_hidden_file = function(name, _)
