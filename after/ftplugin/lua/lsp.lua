@@ -13,7 +13,12 @@ if within_nvim_config then
           keywordSnippet = 'Disable',
         },
         diagnostics = {
-          disable = { 'need-check-nil', 'missing-parameter', 'cast-local-type' },
+          disable = {
+            'need-check-nil',
+            'missing-parameter',
+            'cast-local-type',
+            'missing-fields',
+          },
           enable = true,
         },
         format = { enable = false },
