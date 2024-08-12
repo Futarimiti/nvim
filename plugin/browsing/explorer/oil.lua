@@ -23,6 +23,7 @@ local oil_toggle = function(path)
 end
 
 oil.setup {
+  -- default_file_explorer = false, -- still need netrw for some use
   delete_to_trash = true,
   skip_confirm_for_simple_edits = true,
   watch_for_changes = true,
@@ -44,6 +45,7 @@ oil.setup {
       desc = 'Open the entry under the cursor in the window that starts oil',
       callback = function()
         local entry = oil.get_cursor_entry()
+        if entry == nil then return end
         if entry.type == 'directory' then
           require('oil.actions').select.callback()
         elseif entry.type == 'link' then
