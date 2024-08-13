@@ -10,5 +10,3 @@ inoremap <C-C> <ESC>
 xnoremap <C-C> <ESC>
 nnoremap U <C-R>
 inoremap <C-Z> <C-O>zz
-
-cnoremap <C-;> <C-F>
