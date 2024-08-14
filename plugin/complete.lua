@@ -79,7 +79,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- FIXME
 vim.api.nvim_create_autocmd('LspDetach', {
   desc = 'clear vim.b.lsp_trigger_characters upon lsp detach or buffer unload',
   group = autocomplete_group,
