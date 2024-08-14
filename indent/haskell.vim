@@ -55,6 +55,11 @@ function! s:get_indents() abort
     endif
   endif
 
+  " quasiquotes
+  if s:in_quasiquotes() && line !~ '\v^\s*\[.{-}\|'
+    return -1
+  endif
+
   " #if, #else, #endif, #include
   if line =~# '\v^\s*%(#$|#\s*\w+)'
     return 0
@@ -459,6 +464,29 @@ function! s:in_comment() abort
   let end = searchpos('-}', 'bcnW')
   return start != [0, 0] && (start[0] < pos[1] || start[0] == pos[1] && start[1] <= pos[2])
         \ && (end == [0, 0] || end[0] < start[0] || end[0] == start[0] && end[1] < start[1])
+endfunction
+
+" [| the cursor is in template haskell quasiquotes |]
+" [quasiquoter| █ |] => 1
+" [quasiquoter█| |] => 0
+function! s:in_quasiquotes() abort
+  " if getline(v:lnum) =~# '\v^\s*[.{-}\|'
+  "   return 1
+  " endif
+  let start = searchpos('\v[.{-}\|', 'bcnW')
+  if start == [0, 0]
+    return 0
+  endif
+  let end = searchpos('|]', 'bcnW')
+  if end == [0, 0]
+    return 1
+  elseif start[0] > end[0]
+    return 1
+  elseif start[0] == end[0] && end[1] < start[1]
+    return 1
+  else
+    return 0
+  endif
 endfunction
 
 " comment
