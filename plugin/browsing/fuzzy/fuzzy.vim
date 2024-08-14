@@ -19,7 +19,7 @@ nnoremap <localleader>S
 cnoremap <C-Space> <NOP>
 cnoremap <C-Space>f **/
 cnoremap <C-Space><C-F> **/
-cnoremap <expr> <C-Space>n $'{fnamemodify(stdpath('config'), ":~")}/**/'
-cnoremap <expr> <C-Space><C-N> $'{fnamemodify(stdpath('config'), ":~")}/**/'
+cnoremap <expr> <C-Space>n $'{fnamemodify(stdpath('config'), ':~')}/**/'
+cnoremap <expr> <C-Space><C-N> $'{fnamemodify(stdpath('config'), ':~')}/**/'
 cnoremap <C-Space>r $VIMRUNTIME/**/
 cnoremap <C-Space><C-R> $VIMRUNTIME/**/
