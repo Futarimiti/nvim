@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd('InsertCharPre', {
     end
 
     local inserted_trigger_character =
-      vim.tbl_contains(vim.b.lsp_trigger_characters or {}, vim.v.char)
+      vim.list_contains(vim.b.lsp_trigger_characters or {}, vim.v.char)
 
     if inserted_trigger_character then
       local omnifunc = vim.bo.omnifunc
