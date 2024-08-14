@@ -1,3 +1,5 @@
+vim.keymap.set('n', '<localleader>I', vim.treesitter.inspect_tree)
+
 require('nvim-treesitter.configs').setup {
   ensure_installed = { 'haskell' },
   highlight = {

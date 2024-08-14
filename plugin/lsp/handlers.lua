@@ -35,6 +35,7 @@ vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_hover] = function(_, resu
   vim.wo[win].previewwindow = true
   vim.wo[win].conceallevel = 3
   vim.wo[win].foldenable = false
+  vim.wo[win].winfixbuf = true
 end
 
 vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_signatureHelp] = function(
@@ -79,6 +80,7 @@ vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_signatureHelp] = function
   vim.wo[win].previewwindow = true
   vim.wo[win].conceallevel = 3
   vim.wo[win].foldenable = false
+  vim.wo[win].winfixbuf = true
   if hl then
     -- Highlight the second line if the signature is wrapped in a Markdown code block.
     local line = vim.startswith(lines[1], '```') and 1 or 0

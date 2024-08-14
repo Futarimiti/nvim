@@ -13,5 +13,5 @@ vim.opt.wildignore:append {
   '*.hi',
   '.DS_Store',
   '**/.git/**',
-  vim.fn.stdpath 'config' .. '/pack/**',
+  -- vim.fn.stdpath 'config' .. '/pack/**',
 }
