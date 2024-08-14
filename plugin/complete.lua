@@ -79,18 +79,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+-- FIXME
 vim.api.nvim_create_autocmd('LspDetach', {
-  desc = 'clear lsp trigger_characters cache in vim.b.lsp_trigger_characters upon lsp detach',
+  desc = 'clear vim.b.lsp_trigger_characters upon lsp detach or buffer unload',
   group = autocomplete_group,
   callback = function(args)
     vim.schedule(function()
+      if not vim.api.nvim_buf_is_valid(args.buf) then return end
       if
         vim.tbl_isempty(vim.lsp.get_clients {
           bufnr = args.buf,
           method = vim.lsp.protocol.Methods.textDocument_completion,
         })
       then
-        vim.b.lsp_trigger_characters = nil
+        vim.b[args.buf].lsp_trigger_characters = nil
       end
     end)
   end,
