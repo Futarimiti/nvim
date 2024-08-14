@@ -142,6 +142,23 @@ function! s:get_indents() abort
 
   let prevline = getline(v:lnum - 1)
 
+  " after a multilined type signature
+  if nonblankline =~# '\v^\s+[-=]\>'
+    " search upwards until found ::
+    let decl = -1
+    let curr = v:lnum
+    while curr > 0
+      if getline(curr) =~# '::'
+        let decl = curr
+        break
+      endif
+      let curr -= 1
+    endwhile
+    if decl != -1
+      return indent(decl)
+    endif
+  endif
+
   " inside #if, #else, #endif, #include
   if nonblankline =~# '^\s*#'
     return 0
@@ -221,7 +238,7 @@ function! s:get_indents() abort
   " case x of
   " empty case allowed
   if prevline =~# '\v<case>.*<of>\s*%(--.*)?$' && prevline !~# '^\s*#'
-    return match(prevline, '\v.*<case>\s*\zs')
+    return match(prevline, '\v.*\zs<case>\s*') + &shiftwidth
   endif
 
   if prevline =~# '\v\\\s*(<case>|<cases>)\s*%(--.*)?$'
@@ -274,8 +291,10 @@ function! s:get_indents() abort
     return ret
   endif
 
+  " TODO: relax this - see FIX marks in Test.hs
   if nonblankline =~# '\v[)}\]]\s*%(--.*)?$'
-    return s:unindent_after_parenthesis(s:prevnonblank(v:lnum - 1), match(nonblankline, '\v[)}\]]\s*%(--.*)?$'))
+    return -1
+    " return s:unindent_after_parenthesis(s:prevnonblank(v:lnum - 1), match(nonblankline, '\v[)}\]]\s*%(--.*)?$'))
   endif
 
   if nonblankline =~# '\v^\s*\|\s*.*\<-\s*.*,\s*%(--.*)?$'
@@ -600,6 +619,7 @@ function! s:indent_bar() abort
 endfunction
 
 " guard
+" FIX - see fix mark
 function! s:after_guard() abort
   let nonblankline = getline(s:prevnonblank(v:lnum - 1))
   let line = getline(v:lnum - 1)
