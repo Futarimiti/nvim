@@ -16,7 +16,6 @@ set nohidden
 set noshowmode
 set noruler
 set shortmess+=FcCmW
-set cmdheight=0
 set showcmdloc=statusline
 set nofoldenable
 set spelllang=en_gb

@@ -40,3 +40,6 @@
 [submodule "pack/util/start/whatif"]
 	path = pack/util/start/whatif
 	url = git@github.com:AndrewRadev/whatif.vim.git
+[submodule "pack/make/start/dispatch"]
+	path = pack/make/start/dispatch
+	url = git@github.com:tpope/vim-dispatch.git
