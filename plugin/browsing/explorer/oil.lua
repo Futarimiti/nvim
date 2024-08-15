@@ -69,6 +69,10 @@ oil.setup {
 }
 
 -- relative to file
-vim.keymap.set('n', '<localleader>v', function() oil_toggle(vim.fn.expand '%:p:h') end)
+-- if not on a normal file, fallback to cwd
+vim.keymap.set('n', '<localleader>v', function()
+  local filename = vim.fn.expand '%:p:h'
+  oil_toggle(filename:match '://' and filename or '.')
+end)
 -- cwd
 vim.keymap.set('n', '<localleader>V', function() oil_toggle '.' end)
