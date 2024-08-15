@@ -43,3 +43,6 @@
 [submodule "pack/filetype/start/shakespeare"]
 	path = pack/filetype/start/shakespeare
 	url = git@github.com:pbrisbin/vim-syntax-shakespeare.git
+[submodule "pack/quickfix/start/quicker"]
+	path = pack/quickfix/start/quicker
+	url = git@github.com:stevearc/quicker.nvim.git
