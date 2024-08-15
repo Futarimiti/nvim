@@ -7,21 +7,6 @@ local open = function(path)
   vim.cmd.edit(path)
 end
 
-local oil_toggle = function(path)
-  local oil_windows = vim
-    .iter(vim.fn.getwininfo())
-    :filter(function(win) return vim.bo[win.bufnr].filetype == 'oil' end)
-
-  if oil_windows:peek() then
-    oil_windows:each(function(win) pcall(vim.api.nvim_win_close, win.winid, true) end)
-  else
-    local open_from = vim.api.nvim_get_current_win()
-    vim.cmd 'topleft 35vsplit'
-    oil.open(path)
-    vim.w.open_from_win = open_from
-  end
-end
-
 oil.setup {
   -- default_file_explorer = false, -- still need netrw for some use
   delete_to_trash = true,
@@ -71,8 +56,30 @@ oil.setup {
 -- relative to file
 -- if not on a normal file, fallback to cwd
 vim.keymap.set('n', '<localleader>v', function()
-  local filename = vim.fn.expand '%:p:h'
-  oil_toggle(filename:match '://' and '.' or filename)
+  local oil_windows = vim.iter(vim.api.nvim_tabpage_list_wins(0)):filter(
+    function(win) return vim.filetype.match { buf = vim.api.nvim_win_get_buf(win) } == 'oil' end
+  )
+
+  if oil_windows:peek() then
+    oil_windows:each(function(win) pcall(vim.api.nvim_win_close, win, true) end)
+  else
+    local open_from = vim.api.nvim_get_current_win()
+    vim.cmd 'topleft 35vsplit'
+    local filename = vim.fn.expand '%:p:h'
+    oil.open(filename:match '://' and '.' or filename)
+    vim.w.open_from_win = open_from
+  end
 end)
 -- cwd
-vim.keymap.set('n', '<localleader>V', function() oil_toggle '.' end)
+vim.keymap.set('n', '<localleader>V', function()
+  vim
+    .iter(vim.api.nvim_tabpage_list_wins(0))
+    :filter(
+      function(win) return vim.filetype.match { buf = vim.api.nvim_win_get_buf(win) } == 'oil' end
+    )
+    :each(function(win) pcall(vim.api.nvim_win_close, win, true) end)
+  local open_from = vim.api.nvim_get_current_win()
+  vim.cmd 'topleft 35vsplit'
+  oil.open '.'
+  vim.w.open_from_win = open_from
+end)
