@@ -3,8 +3,8 @@ local oil = require 'oil'
 local open = function(path)
   local win = vim.w.open_from_win or 0
   win = vim.api.nvim_win_is_valid(win) and win or 0
-  vim.api.nvim_win_call(win, function() vim.cmd.edit(path) end)
   vim.api.nvim_set_current_win(win)
+  vim.cmd.edit(path)
 end
 
 local oil_toggle = function(path)
@@ -72,7 +72,7 @@ oil.setup {
 -- if not on a normal file, fallback to cwd
 vim.keymap.set('n', '<localleader>v', function()
   local filename = vim.fn.expand '%:p:h'
-  oil_toggle(filename:match '://' and filename or '.')
+  oil_toggle(filename:match '://' and '.' or filename)
 end)
 -- cwd
 vim.keymap.set('n', '<localleader>V', function() oil_toggle '.' end)
