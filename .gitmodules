@@ -16,9 +16,6 @@
 [submodule "pack/terminal/start/term-edit"]
 	path = pack/terminal/start/term-edit
 	url = git@github.com:chomosuke/term-edit.nvim.git
-[submodule "pack/quickfix/start/bqf"]
-	path = pack/quickfix/start/bqf
-	url = git@github.com:kevinhwang91/nvim-bqf.git
 [submodule "pack/database/opt/dbext"]
 	path = pack/database/opt/dbext
 	url = git@github.com:vim-scripts/dbext.vim.git
