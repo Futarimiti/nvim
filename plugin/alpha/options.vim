@@ -11,6 +11,7 @@ set tabstop=4
 set noexpandtab
 set splitright
 set signcolumn=yes:1
+set laststatus=3
 set viewoptions-=curdir
 set nohidden
 set noshowmode
