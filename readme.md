@@ -8,5 +8,5 @@ git clone --recurse-submodules -b main git@github.com:Futarimiti/nvim.git ~/.con
 - [ ] Set up comment, indent, formatters, compilers, include-search, fold for each ft
     - [x] Get the nasty sql thing done
 - [ ] Set up LSP for some ft only if desperate
-- [ ] `gO`-like outline navigation for LaTeX, markdown etc
+- [x] `gO`-like outline navigation for LaTeX, markdown etc
 - [ ] Way to 'refresh' vim after changing config without leaving editor
