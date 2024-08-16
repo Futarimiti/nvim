@@ -1,7 +1,10 @@
 if vim.fn.exepath 'lua-language-server' == '' then return end
 
-local within_nvim_config = vim.startswith(vim.api.nvim_buf_get_name(0), vim.fn.stdpath 'config')
-if within_nvim_config then
+local bufname = vim.api.nvim_buf_get_name(0)
+if
+  vim.startswith(bufname, vim.fn.stdpath 'config')
+  or vim.startswith(bufname, os.getenv 'VIMRUNTIME')
+then
   vim.lsp.start {
     cmd = { 'lua-language-server' },
     name = 'lua_ls', -- do not change this - lazydev searches for exact "lua_ls"
