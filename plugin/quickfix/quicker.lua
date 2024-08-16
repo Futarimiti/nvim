@@ -1,6 +1,13 @@
 local quicker = require 'quicker'
 
 quicker.setup {
+  type_icons = {
+    E = '',
+    W = '',
+    I = '',
+    N = '',
+    H = '',
+  },
   borders = {
     vert = ' ',
     strong_cross = '━',
