@@ -1,6 +1,6 @@
-nnoremap [q <CMD>silent cprevious<CR>
-nnoremap ]q <CMD>silent cnext<CR>
-nnoremap [c <CMD>silent cprevious<CR>
-nnoremap ]c <CMD>silent cnext<CR>
-nnoremap [l <CMD>silent lprevious<CR>
-nnoremap ]l <CMD>silent lnext<CR>
+nnoremap <silent> [q <CMD>silent cprevious<CR>
+nnoremap <silent> ]q <CMD>silent cnext<CR>
+nnoremap <silent> [c <CMD>silent cprevious<CR>
+nnoremap <silent> ]c <CMD>silent cnext<CR>
+nnoremap <silent> [l <CMD>silent lprevious<CR>
+nnoremap <silent> ]l <CMD>silent lnext<CR>
