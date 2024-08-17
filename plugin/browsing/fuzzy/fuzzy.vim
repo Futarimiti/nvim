@@ -10,7 +10,7 @@ nnoremap <expr> <localleader>p
       \ $':edit {fnamemodify(stdpath('config'), ':~')}/pack/**/'
 nnoremap <expr> <localleader>P
       \ $':vimgrep  {fnamemodify(stdpath('config'), ':~')}/pack/**/<C-Left><Left>'
-nnoremap <localleader>r :view $VIMRUNTIME/**/
+nnoremap <localleader>r :edit $VIMRUNTIME/**/
 nnoremap <localleader>R :vimgrep  $VIMRUNTIME/**<C-Left><Left>
 nnoremap <localleader>s :scriptnames **/
 nnoremap <localleader>S
