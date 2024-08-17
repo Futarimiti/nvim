@@ -3,7 +3,7 @@ if &l:filetype !=# 'scala'
   finish
 endif
 
-if findfile('build.sbt', '.') isnot ''
+if glob('bulid.sbt', v:true) isnot ''
   " sbt must be run in the directory containing sbt.build
   " otherwise there would be strange problems
   let b:start = 'sbt compile --no-colors'
