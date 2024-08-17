@@ -10,21 +10,21 @@ vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'capability keymaps upon LSP attach',
   group = vim.api.nvim_create_augroup('lsp-capability-keymaps', {}),
   callback = function(args)
-    local capabilities = vim.lsp.get_client_by_id(args.data.client_id).server_capabilities
-    if capabilities.definitionProvider then
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client.supports_method(vim.lsp.protocol.Methods.textDocument_definition) then
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = args.buf })
     end
-    if capabilities.typeDefinitionProvider then
+    if client.supports_method(vim.lsp.protocol.Methods.textDocument_typeDefinition) then
       vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, { buffer = args.buf })
     end
-    if capabilities.hoverProvider and vim.bo.keywordprg == '' then
+    if client.supports_method(vim.lsp.protocol.Methods.textDocument_hover) then
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = args.buf })
     end
-    if capabilities.codeActionProvider then
+    if client.supports_method(vim.lsp.protocol.Methods.textDocument_codeAction) then
       vim.keymap.set('n', '<CR>', vim.lsp.buf.code_action, { buffer = args.buf })
     end
 
-    if capabilities.referencesProvider then
+    if client.supports_method(vim.lsp.protocol.Methods.textDocument_references) then
       vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = args.buf, nowait = true })
     end
   end,
