@@ -2,10 +2,18 @@ local autocomplete_group = vim.api.nvim_create_augroup('autocomplete', {})
 
 local autocomplete_in_progress = false
 
-vim.api.nvim_create_autocmd('InsertCharPre', {
-  desc = 'trigger autocomplete based on character inserted',
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'enable completion autotrigger',
   group = autocomplete_group,
   callback = function(args)
+    vim.lsp.completion.enable(true, args.data.client_id, args.buf, { autotrigger = true })
+  end,
+})
+
+vim.api.nvim_create_autocmd('InsertCharPre', {
+  desc = 'keyword & filepath autocomplete',
+  group = autocomplete_group,
+  callback = function()
     if
       autocomplete_in_progress
       or vim.fn.pumvisible() == 1
@@ -19,36 +27,6 @@ vim.api.nvim_create_autocmd('InsertCharPre', {
 
     if vim.v.char == '/' then
       vim.api.nvim_feedkeys(vim.keycode '<C-X><C-F>', 'ni', false)
-      return
-    end
-
-    local inserted_trigger_character = vim.list_contains(
-      vim
-        .iter(vim.lsp.get_clients {
-          bufnr = args.buf,
-          method = vim.lsp.protocol.Methods.textDocument_completion,
-        })
-        :map(
-          function(client)
-            return vim.tbl_get(
-              client,
-              'server_capabilities',
-              'completionProvider',
-              'triggerCharacters'
-            )
-          end
-        )
-        :flatten()
-        :totable(),
-      vim.v.char
-    )
-
-    if inserted_trigger_character then
-      local omnifunc = vim.bo.omnifunc
-      -- XXX change this mess to vim.lsp.completion.trigger after becoming stable
-      vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
-      vim.api.nvim_feedkeys(vim.keycode '<C-X><C-O>', 'ni', false)
-      vim.schedule(function() vim.bo.omnifunc = omnifunc end)
       return
     end
 
@@ -68,45 +46,3 @@ vim.api.nvim_create_autocmd({ 'TextChangedP', 'TextChangedI' }, {
   group = autocomplete_group,
   callback = function() autocomplete_in_progress = false end,
 })
---
--- vim.api.nvim_create_autocmd('LspAttach', {
---   desc = 'cache lsp trigger_characters into vim.b.lsp_trigger_characters',
---   group = autocomplete_group,
---   callback = function(args)
---     vim.b.lsp_trigger_characters = vim
---       .iter(vim.lsp.get_clients {
---         bufnr = args.buf,
---         method = vim.lsp.protocol.Methods.textDocument_completion,
---       })
---       :map(
---         function(client)
---           return vim.tbl_get(
---             client,
---             'server_capabilities',
---             'completionProvider',
---             'triggerCharacters'
---           )
---         end
---       )
---       :flatten()
---       :totable()
---   end,
--- })
---
--- vim.api.nvim_create_autocmd('LspDetach', {
---   desc = 'clear vim.b.lsp_trigger_characters upon lsp detach or buffer unload',
---   group = autocomplete_group,
---   callback = function(args)
---     vim.schedule(function()
---       if not vim.api.nvim_buf_is_valid(args.buf) then return end
---       if
---         vim.tbl_isempty(vim.lsp.get_clients {
---           bufnr = args.buf,
---           method = vim.lsp.protocol.Methods.textDocument_completion,
---         })
---       then
---         vim.b[args.buf].lsp_trigger_characters = nil
---       end
---     end)
---   end,
--- })
