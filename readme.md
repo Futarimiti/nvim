@@ -1,5 +1,7 @@
 ```bash
 rm -rf ~/.config/nvim ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim
+brew tap austinliuigi/brew-neovim-nightly https://github.com/austinliuigi/brew-neovim-nightly.git
+brew install neovim-nightly
 git clone --recurse-submodules -b main git@github.com:Futarimiti/nvim.git ~/.config/nvim
 ```
 
