@@ -1,11 +1,11 @@
 vim.keymap.set('n', '<localleader>I', vim.treesitter.inspect_tree)
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'haskell', 'bash', 'query', 'vimdoc' },
+  ensure_installed = { 'bash', 'query', 'vimdoc', 'haskell', 'scala' },
   highlight = {
     enable = true,
     disable = {},
-    additional_vim_regex_highlighting = { 'haskell' }, -- for shakespeare
+    additional_vim_regex_highlighting = { 'haskell' }, -- for shakespeare (yet no TS support)
   },
   incremental_selection = {
     enable = true,
