@@ -1,5 +1,4 @@
 vim.keymap.set('n', '<C-K>', vim.lsp.buf.hover)
-vim.keymap.set('i', '<C-S>', vim.lsp.buf.signature_help)
 vim.keymap.set('n', '<C-CR>', vim.lsp.buf.code_action)
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
 vim.keymap.set('n', '<leader><leader>', vim.lsp.buf.rename)
@@ -26,7 +25,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     if capabilities.referencesProvider then
-      vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = args.buf })
+      vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = args.buf, nowait = true })
     end
   end,
 })
