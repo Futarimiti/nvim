@@ -17,13 +17,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     if client.supports_method(vim.lsp.protocol.Methods.textDocument_typeDefinition) then
       vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, { buffer = args.buf })
     end
-    if client.supports_method(vim.lsp.protocol.Methods.textDocument_hover) then
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = args.buf })
-    end
     if client.supports_method(vim.lsp.protocol.Methods.textDocument_codeAction) then
       vim.keymap.set('n', '<CR>', vim.lsp.buf.code_action, { buffer = args.buf })
     end
-
     if client.supports_method(vim.lsp.protocol.Methods.textDocument_references) then
       vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = args.buf, nowait = true })
     end
