@@ -32,22 +32,22 @@ CompilerSet makeprg=mvn
 
 " Ignored message
 CompilerSet errorformat=
-  \%-G[INFO]\ %.%#,
-  \%-G[debug]\ %.%#
+      \%-G[INFO]\ %.%#,
+      \%-G[debug]\ %.%#
 
 " Error message for POM
 CompilerSet errorformat+=
-  \[FATAL]\ Non-parseable\ POM\ %f:\ %m%\\s%\\+@%.%#line\ %l\\,\ column\ %c%.%#,
-  \[%tRROR]\ Malformed\ POM\ %f:\ %m%\\s%\\+@%.%#line\ %l\\,\ column\ %c%.%#
+      \[FATAL]\ Non-parseable\ POM\ %f:\ %m%\\s%\\+@%.%#line\ %l\\,\ column\ %c%.%#,
+      \[%tRROR]\ Malformed\ POM\ %f:\ %m%\\s%\\+@%.%#line\ %l\\,\ column\ %c%.%#
 
 " Error message for compiling
 CompilerSet errorformat+=
-  \[%tARNING]\ %f:[%l\\,%c]\ %m,
-  \[%tRROR]\ %f:[%l\\,%c]\ %m
+      \[%tARNING]\ %f:[%l\\,%c]\ %m,
+      \[%tRROR]\ %f:[%l\\,%c]\ %m
 
 " Message from JUnit 5(5.3.X), TestNG(6.14.X), JMockit(1.43), and AssertJ(3.11.X)
 CompilerSet errorformat+=
-  \%+E%>[ERROR]\ %.%\\+Time\ elapsed:%.%\\+<<<\ FAILURE!,
-  \%+E%>[ERROR]\ %.%\\+Time\ elapsed:%.%\\+<<<\ ERROR!,
-  \%+Z%\\s%#at\ %f(%\\f%\\+:%l),
-  \%+C%.%#
+      \%+E%>[ERROR]\ %.%\\+Time\ elapsed:%.%\\+<<<\ FAILURE!,
+      \%+E%>[ERROR]\ %.%\\+Time\ elapsed:%.%\\+<<<\ ERROR!,
+      \%+Z%\\s%#at\ %f(%\\f%\\+:%l),
+      \%+C%.%#
