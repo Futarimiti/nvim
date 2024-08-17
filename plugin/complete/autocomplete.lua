@@ -3,11 +3,14 @@ local autocomplete_group = vim.api.nvim_create_augroup('autocomplete', {})
 local autocomplete_in_progress = false
 
 vim.api.nvim_create_autocmd('LspAttach', {
-  desc = 'enable completion autotrigger',
+  desc = 'lsp autocomplete',
   group = autocomplete_group,
   callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client.supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
+    if
+      vim.lsp
+        .get_client_by_id(args.data.client_id)
+        .supports_method(vim.lsp.protocol.Methods.textDocument_completion)
+    then
       vim.lsp.completion.enable(true, args.data.client_id, args.buf, { autotrigger = true })
     end
   end,
