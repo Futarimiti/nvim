@@ -1,23 +1,22 @@
 if findfile('stack.yaml', '.;') isnot ''
+  let b:dispatch = 'stack build --color never'
   let b:start = 'stack ghci'
-  let b:dispatch = 'stack build'
   compiler stack
 elseif glob('*.cabal', v:true) isnot ''
-  " cabal must be run in the directory as *.cabal
-  " ignore 'wildignore'
-  let b:dispatch = 'cabal repl'
-  let b:start = 'cabal build'
+  " https://github.com/haskell/cabal/issues/9188
+  let b:dispatch = 'cabal build --ghc-options=-fdiagnostics-color=never'
+  let b:start = 'cabal repl'
   compiler cabal
 elseif executable('ghc')
-  let b:dispatch = 'ghc %'
+  let b:dispatch = 'ghc -fdiagnostics-color=never %'
   let b:start = 'ghci %'
   compiler ghc
 elseif executable('stack')
+  let b:dispatch = 'stack ghc -- -fdiagnostics-color=never %'
   let b:start = 'stack ghci %'
-  let b:dispatch = 'stack ghc %'
   compiler stack
 else
-  let b:dispatch = 'ghc %'
+  let b:dispatch = 'ghc -fdiagnostics-color=never %'
   let b:start = 'ghci %'
   compiler ghc
 endif
