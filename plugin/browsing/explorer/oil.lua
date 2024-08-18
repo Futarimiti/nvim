@@ -4,7 +4,7 @@ local open = function(path)
   local win = vim.w.open_from_win or 0
   win = vim.api.nvim_win_is_valid(win) and win or 0
   vim.api.nvim_set_current_win(win)
-  vim.cmd.edit(path)
+  vim.cmd.edit { path, mods = { confirm = true } }
 end
 
 oil.setup {
