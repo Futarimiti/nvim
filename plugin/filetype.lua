@@ -6,5 +6,7 @@ vim.filetype.add {
     ['stack.yaml'] = 'stack.yaml',
     ['stack.yaml.lock'] = 'stack.yaml',
     ['pom.xml'] = 'maven.xml',
+    ['lakefile.lean'] = 'lean.lake',
+    ['lean-toolchain'] = 'leantoolchain',
   },
 }
