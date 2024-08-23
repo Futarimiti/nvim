@@ -27,3 +27,4 @@ highlight! link @type.builtin @type
 highlight! link @variable.builtin @variable
 highlight! link @constant.builtin @constant
 highlight! link @function.builtin @function
+highlight! link @tag.attribute @attribute
