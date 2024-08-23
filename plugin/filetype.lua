@@ -1,4 +1,8 @@
 vim.filetype.add {
+  extension = {
+    idr = 'idris',
+    lidr = 'lidris',
+  },
   filename = {
     ['package.yaml'] = function(path, _)
       return vim.fn.findfile(path .. ';', '.') == '' and 'yaml' or 'stack.yaml'
