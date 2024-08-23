@@ -12,5 +12,7 @@ vim.filetype.add {
     ['pom.xml'] = 'maven.xml',
     ['Cargo.lock'] = 'cargo.toml',
     ['Cargo.toml'] = 'cargo.toml',
+    ['lakefile.lean'] = 'lean.lake',
+    ['lean-toolchain'] = 'leantoolchain',
   },
 }
