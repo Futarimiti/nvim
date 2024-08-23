@@ -43,7 +43,6 @@ vim.keymap.set('n', 'gO', function()
     .iter(query:iter_captures(root, bufnr))
     :map(function(id, node, _, _)
       local type = query.captures[id]
-      vim.print(type)
       local lnum, col, end_lnum, end_col = node:range()
       local header = vim.trim(vim.treesitter.get_node_text(node:field('heading_content')[1], bufnr))
       return {

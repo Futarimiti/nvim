@@ -54,6 +54,7 @@ vim.keymap.set('n', 'gO', function()
       }
     end)
     :totable()
+
   vim.fn.setloclist(0, toc, ' ')
   vim.fn.setloclist(0, {}, 'a', { title = 'LaTeX TOC' })
   vim.cmd.lopen()
