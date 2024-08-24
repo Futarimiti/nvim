@@ -12,12 +12,14 @@ vim.keymap.set('n', 'gr', function()
 end, { silent = true, nowait = true })
 
 -- limitations:
--- only work in charwise v mode
--- some patterns do not recognise verbatim
+-- some patterns are not recognised verbatim
 vim.keymap.set('x', 'gr', function()
-  local selection = unpack(vim.fn.getregion(vim.fn.getpos 'v', vim.fn.getpos '.'))
+  local selection = vim.fn.join(
+    vim.fn.getregion(vim.fn.getpos 'v', vim.fn.getpos '.', { type = vim.fn.mode() }),
+    '\n'
+  )
   vim.cmd.vimgrep {
-    ('/%s/'):format(vim.trim(selection)),
+    ('/%s/'):format(selection),
     '**/*.%:e',
     mods = { silent = true },
     bang = true,
