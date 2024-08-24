@@ -14,5 +14,6 @@ vim.filetype.add {
     ['Cargo.toml'] = 'cargo.toml',
     ['lakefile.lean'] = 'lean.lake',
     ['lean-toolchain'] = 'leantoolchain',
+    Brewfile = 'ruby',
   },
 }
