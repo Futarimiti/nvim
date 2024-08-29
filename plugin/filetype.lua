@@ -5,13 +5,13 @@ vim.filetype.add {
   },
   filename = {
     ['package.yaml'] = function(path, _)
-      return vim.fn.findfile(path .. ';', '.') == '' and 'yaml' or 'stack.yaml'
+      return vim.fn.findfile('stack.yaml', path .. ';') == '' and 'yaml' or 'yaml.stack'
     end,
-    ['stack.yaml'] = 'stack.yaml',
-    ['stack.yaml.lock'] = 'stack.yaml',
-    ['pom.xml'] = 'maven.xml',
-    ['Cargo.lock'] = 'cargo.toml',
-    ['Cargo.toml'] = 'cargo.toml',
+    ['stack.yaml'] = 'yaml.stack',
+    ['stack.yaml.lock'] = 'yaml.stack',
+    ['pom.xml'] = 'xml.maven',
+    ['Cargo.lock'] = 'toml.cargo',
+    ['Cargo.toml'] = 'toml.cargo',
     ['lakefile.lean'] = 'lean.lake',
     ['lean-toolchain'] = 'leantoolchain',
     Brewfile = 'ruby',
