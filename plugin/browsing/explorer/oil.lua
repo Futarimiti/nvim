@@ -7,6 +7,55 @@ local open = function(path)
   vim.cmd.edit { path, mods = { confirm = true } }
 end
 
+-- helper function to parse output
+local parse_output = function(proc)
+  local result = proc:wait()
+  local ret = {}
+  if result.code == 0 then
+    for line in vim.gsplit(result.stdout, '\n', { plain = true, trimempty = true }) do
+      -- Remove trailing slash
+      line = line:gsub('/$', '')
+      ret[line] = true
+    end
+  end
+  return ret
+end
+
+-- build git status cache
+local new_git_status = function()
+  return setmetatable({}, {
+    __index = function(self, key)
+      local ignore_proc = vim.system(
+        { 'git', 'ls-files', '--ignored', '--exclude-standard', '--others', '--directory' },
+        {
+          cwd = key,
+          text = true,
+        }
+      )
+      local tracked_proc = vim.system({ 'git', 'ls-tree', 'HEAD', '--name-only' }, {
+        cwd = key,
+        text = true,
+      })
+      local ret = {
+        ignored = parse_output(ignore_proc),
+        tracked = parse_output(tracked_proc),
+      }
+
+      rawset(self, key, ret)
+      return ret
+    end,
+  })
+end
+local git_status = new_git_status()
+
+-- Clear git status cache on refresh
+local refresh = require('oil.actions').refresh
+local orig_refresh = refresh.callback
+refresh.callback = function(...)
+  git_status = new_git_status()
+  orig_refresh(...)
+end
+
 oil.setup {
   -- default_file_explorer = false, -- still need netrw for some use
   delete_to_trash = true,
@@ -16,12 +65,18 @@ oil.setup {
   view_options = {
     show_hidden = false,
     is_hidden_file = function(name, _)
-      return vim.tbl_contains(
-        { '..', '.DS_Store', '.git', 'node_modules', '__pycache__', 'dist-newstyle' },
-        name
-      ) or vim
-        .iter({ '.o', '.obj', '.dyn_hi', 'dyn_o', '.class', '.ibc', '.pyc', '.a', '.hi' })
-        :any(function(suffix) return vim.endswith(name, suffix) end)
+      local dir = oil.get_current_dir()
+      -- if no local directory (e.g. for ssh connections), give up
+      if not dir then return false end
+      -- Check if file is gitignored
+      return git_status[dir].ignored[name]
+        or vim.tbl_contains(
+          { '..', '.DS_Store', '.git', 'node_modules', '__pycache__', 'dist-newstyle' },
+          name
+        )
+        or vim
+          .iter({ '.o', '.obj', '.dyn_hi', 'dyn_o', '.class', '.ibc', '.pyc', '.a', '.hi' })
+          :any(function(suffix) return vim.endswith(name, suffix) end)
     end,
   },
   keymaps = {
