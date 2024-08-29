@@ -1,1 +1,1 @@
-setlocal formatprg=prettier\ %
+setlocal formatprg=prettier\ --parser\ yaml
