@@ -30,6 +30,7 @@ default-extensions:
   - RecordWildCards
   - TypeFamilies
   - OverloadedRecordDot
+  - TemplateHaskell
 
 ghc-options:
   - -Wall
