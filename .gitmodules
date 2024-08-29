@@ -28,9 +28,6 @@
 [submodule "pack/browsing/start/oil"]
 	path = pack/browsing/start/oil
 	url = git@github.com:stevearc/oil.nvim.git
-[submodule "pack/highlighting/start/treesitter"]
-	path = pack/highlighting/start/treesitter
-	url = git@github.com:nvim-treesitter/nvim-treesitter.git
 [submodule "pack/lsp/opt/lazydev"]
 	path = pack/lsp/opt/lazydev
 	url = git@github.com:folke/lazydev.nvim.git
@@ -46,3 +43,6 @@
 [submodule "pack/quickfix/start/quicker"]
 	path = pack/quickfix/start/quicker
 	url = git@github.com:stevearc/quicker.nvim.git
+[submodule "pack/treesitter/start/treesitter"]
+	path = pack/treesitter/start/treesitter
+	url = git@github.com:nvim-treesitter/nvim-treesitter.git
