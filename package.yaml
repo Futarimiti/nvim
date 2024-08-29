@@ -29,6 +29,7 @@ default-extensions:
   - PatternSynonyms
   - RecordWildCards
   - TypeFamilies
+  - OverloadedRecordDot
 
 ghc-options:
   - -Wall

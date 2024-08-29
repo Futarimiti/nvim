@@ -3,7 +3,7 @@ import           Neovim
 import qualified Neovim.Example.Plugin as Example
 
 main :: IO ()
-main = do
-  neovim defaultConfig
-    { plugins = plugins defaultConfig ++ [ Example.plugin ]
-    }
+main = neovim config
+
+config :: NeovimConfig
+config = defaultConfig { plugins = Example.plugin : defaultConfig.plugins }
