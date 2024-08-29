@@ -7,4 +7,5 @@ main :: IO ()
 main = neovim config
 
 config :: NeovimConfig
-config = defaultConfig { plugins = Example.plugin : HelloWorld.plugin : defaultConfig.plugins }
+config = defaultConfig
+  { plugins = Example.plugin : HelloWorld.plugin : defaultConfig.plugins }

@@ -20,17 +20,21 @@ dependencies:
   - transformers
   - exceptions
   - bytestring
+  - containers
+  - string-interpolate
 
 default-extensions:
   - ViewPatterns
+  - PatternSynonyms
   - StrictData
   - DeriveAnyClass
   - LambdaCase
-  - PatternSynonyms
+  - NamedFieldPuns
   - RecordWildCards
   - TypeFamilies
   - OverloadedRecordDot
   - TemplateHaskell
+  - QuasiQuotes
 
 ghc-options:
   - -Wall
@@ -39,7 +43,7 @@ ghc-options:
 description: Personal project to manage plugin dependencies.
 
 source-dirs:
-  - "."
+  - .
   - nvim-hs
 
 executables:
