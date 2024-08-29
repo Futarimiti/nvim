@@ -46,3 +46,6 @@
 [submodule "pack/treesitter/start/treesitter"]
 	path = pack/treesitter/start/treesitter
 	url = git@github.com:nvim-treesitter/nvim-treesitter.git
+[submodule "pack/remote/start/nvim-hs"]
+	path = pack/remote/start/nvim-hs
+	url = git@github.com:neovimhaskell/nvim-hs.vim.git

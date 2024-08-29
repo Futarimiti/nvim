@@ -1,0 +1,45 @@
+name: my-nvim-hs
+version: 0.1.0.0
+github: Futarimiti/nvim
+license: WTFPL
+author: Carman Fu
+maintainer: futarimiti@163.com
+copyright: © 2024 Carman Fu
+synopsis: Haskell Neovim plugins
+category: Neovim
+
+extra-source-files:
+  - readme.md
+
+dependencies:
+  - base >=4.7 && <5
+  - nvim-hs >=2 && <3
+  - random
+  - unliftio
+  - mtl
+  - transformers
+  - exceptions
+  - bytestring
+
+default-extensions:
+  - ViewPatterns
+  - StrictData
+  - DeriveAnyClass
+  - LambdaCase
+  - PatternSynonyms
+  - RecordWildCards
+  - TypeFamilies
+
+ghc-options:
+  - -Wall
+  - -Wmonomorphism-restriction
+
+description: Personal project to manage plugin dependencies.
+
+source-dirs:
+  - "."
+  - nvim-hs
+
+executables:
+  my-nvim-hs:
+    main: nvim.hs
