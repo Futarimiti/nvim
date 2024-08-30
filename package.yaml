@@ -22,6 +22,7 @@ dependencies:
   - bytestring
   - containers
   - string-interpolate
+  - raw-strings-qq
 
 default-extensions:
   - ViewPatterns
@@ -35,6 +36,8 @@ default-extensions:
   - OverloadedRecordDot
   - TemplateHaskell
   - QuasiQuotes
+  - TypeApplications
+  - RankNTypes
 
 ghc-options:
   - -Wall
