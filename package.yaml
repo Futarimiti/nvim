@@ -48,4 +48,4 @@ source-dirs:
 
 executables:
   my-nvim-hs:
-    main: nvim.hs
+    main: init.hs
