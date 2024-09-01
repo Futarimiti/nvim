@@ -7,9 +7,6 @@
 [submodule "pack/editor/start/yank-assassin"]
 	path = pack/editor/start/yank-assassin
 	url = git@github.com:svban/YankAssassin.vim.git
-[submodule "pack/browsing/start/jump"]
-	path = pack/browsing/start/jump
-	url = git@github.com:padde/jump.vim.git
 [submodule "pack/git/start/fugitive"]
 	path = pack/git/start/fugitive
 	url = git@github.com:tpope/vim-fugitive.git
