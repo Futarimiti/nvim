@@ -1,9 +1,6 @@
 [submodule "pack/editor/start/surround"]
 	path = pack/editor/start/surround
 	url = git@github.com:tpope/vim-surround.git
-[submodule "pack/editor/start/rsi"]
-	path = pack/editor/start/rsi
-	url = git@github.com:tpope/vim-rsi.git
 [submodule "pack/editor/start/yank-assassin"]
 	path = pack/editor/start/yank-assassin
 	url = git@github.com:svban/YankAssassin.vim.git
