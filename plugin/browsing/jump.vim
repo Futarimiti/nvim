@@ -1,11 +1,11 @@
-if !executable('autojump')
+if executable('autojump')
+  echomsg expand("<SID>") .. ': cannot find autojump exe'
   finish
 endif
 
 function s:j(dest)
   " system() produces a newline at the end
-  let [dest] = system(['autojump', a:dest])->split()
-  call system(['autojump', '--add', dest])
+  let [dest] = systemlist(['autojump', a:dest])
   lcd `=dest`
   pwd
 endfunction
