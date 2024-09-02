@@ -1,4 +1,4 @@
-if executable('autojump')
+if !executable('autojump')
   echomsg expand("<SID>") .. ': cannot find autojump exe'
   finish
 endif
