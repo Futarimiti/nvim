@@ -1,9 +1,6 @@
 [submodule "pack/editor/start/surround"]
 	path = pack/editor/start/surround
 	url = git@github.com:tpope/vim-surround.git
-[submodule "pack/editor/start/rsi"]
-	path = pack/editor/start/rsi
-	url = git@github.com:tpope/vim-rsi.git
 [submodule "pack/editor/start/yank-assassin"]
 	path = pack/editor/start/yank-assassin
 	url = git@github.com:svban/YankAssassin.vim.git
@@ -34,9 +31,6 @@
 [submodule "pack/make/start/dispatch"]
 	path = pack/make/start/dispatch
 	url = git@github.com:tpope/vim-dispatch.git
-[submodule "pack/filetype/start/shakespeare"]
-	path = pack/filetype/start/shakespeare
-	url = git@github.com:pbrisbin/vim-syntax-shakespeare.git
 [submodule "pack/quickfix/start/quicker"]
 	path = pack/quickfix/start/quicker
 	url = git@github.com:stevearc/quicker.nvim.git
