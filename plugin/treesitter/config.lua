@@ -3,6 +3,7 @@ require('nvim-treesitter.configs').setup {
     'comment',
     'scala',
     'latex',
+    'nix',
     -- broken shipped parsers
     'bash',
     'query',

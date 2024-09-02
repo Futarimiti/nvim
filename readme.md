@@ -1,9 +1,8 @@
 ```bash
+# get these ready: git j tree-sitter nvim (nightly)
 rm -rf ~/.config/nvim ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim
-brew tap austinliuigi/brew-neovim-nightly https://github.com/austinliuigi/brew-neovim-nightly.git
-brew install neovim-nightly
-git clone --recurse-submodules -b nightly-hs git@github.com:Futarimiti/nvim.git ~/.config/nvim
 mkdir ~/.cache/nvim/  # nvim-hs somehow stumble upon this
+git clone --recurse-submodules -b nightly git@github.com:Futarimiti/nvim.git ~/.config/nvim
 nvim --cmd 'helptags ALL'
 ```
 
