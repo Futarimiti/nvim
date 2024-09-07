@@ -1,3 +1,5 @@
+switched to home manager lately - probably won't touch this anymore :|
+
 ```bash
 # get these ready: git j tree-sitter nvim (nightly)
 rm -rf ~/.config/nvim ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim
