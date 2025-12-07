@@ -92,6 +92,7 @@
                 vim-repeat
                 vim-sexp
                 vim-speeddating
+                whatif-vim
               ];
             };
 
