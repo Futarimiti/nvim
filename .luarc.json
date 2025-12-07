@@ -1,0 +1,23 @@
+{ "runtime.version": "LuaJIT"
+, "diagnostics": { "enable": true
+                 , "disable": [ "need-check-nil", "missing-parameter", "cast-local-type", "missing-fields" ]
+                 }
+, "completion": { "callSnippet": "Both"
+                , "keywordSnippet": "Both"
+                }
+, "workspace": { "library": [ "$VIMRUNTIME", "${3rd}/luv/library" ]
+               , "checkThirdParty": "Disable"
+               , "maxPreload": 2000
+               , "preloadFileSize": 1000
+               }
+, "type": { "weakNilCheck": true
+          , "weakUnionCheck": true
+          , "castNumberToInteger": true
+          }
+, "hint": { "enable": true
+          , "setType": true
+          }
+, "telemetry.enable": false
+, "format.enable": false
+, "semantic.enable": false
+}
