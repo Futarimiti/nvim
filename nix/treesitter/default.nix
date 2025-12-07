@@ -1,7 +1,8 @@
 { inputs, pkgs, ... }:
 let
   parsers =
-    ps: with ps; [
+    ps:
+    (with ps; [
       bash
       c
       c_sharp
@@ -16,14 +17,12 @@ let
       gitignore
       go
       groovy
-      haskell
       haskell_persistent
       idris
       java
       javascript
       json
       just
-      koka
       latex
       lua
       luadoc
@@ -44,7 +43,16 @@ let
       xml
       yaml
       zig
+    ])
+    ++ [
+      haskell
+      koka
     ];
+  haskell = pkgs.tree-sitter.buildGrammar {
+    language = "haskell";
+    version = inputs.tree-sitter-haskell.rev;
+    src = inputs.tree-sitter-haskell;
+  };
   koka =
     inputs.tree-sitter-koka.packages.${pkgs.stdenv.hostPlatform.system}.default;
   nvim-treesitter = pkgs.vimPlugins.nvim-treesitter.overrideAttrs {

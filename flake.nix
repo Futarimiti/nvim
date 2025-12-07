@@ -16,6 +16,10 @@
       url = "github:Futarimiti/tree-sitter-koka/fix/flake-overlay-src";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tree-sitter-haskell = {
+      url = "github:tree-sitter/tree-sitter-haskell";
+      flake = false;
+    };
     nvim-treesitter = {
       url = "github:nvim-treesitter/nvim-treesitter/main";
       flake = false;
