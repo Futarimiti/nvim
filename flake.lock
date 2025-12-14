@@ -116,11 +116,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1765595746,
-        "narHash": "sha256-bgd3+U/l+C04iKc8JH/9Y8pezVkt2dhtIg8ZYJBOzBM=",
+        "lastModified": 1765722297,
+        "narHash": "sha256-ccGGnYtc9DSQ9oYOPXEklZpyGay1ZGbs2ICBBpx0m+I=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "ea53590946fb7f2262390dd32acdf4a373c5e459",
+        "rev": "1f2d72394f930359ffd0dedf39c1ae41962133ca",
         "type": "github"
       },
       "original": {
@@ -132,11 +132,11 @@
     "nvim-treesitter": {
       "flake": false,
       "locked": {
-        "lastModified": 1765447027,
-        "narHash": "sha256-70v1qrRLwKcSUWoCLyyKvacGc8RAOOo5G6AIKwTD700=",
+        "lastModified": 1765714585,
+        "narHash": "sha256-usW9Z8+yilTLzs+8BzTyJad0L7CEoopXV/ExMuWlpoc=",
         "owner": "nvim-treesitter",
         "repo": "nvim-treesitter",
-        "rev": "2979e048b356cfd32dc419d5803dc356b9832adf",
+        "rev": "d3218d988f72ed34414959c9ccd802d393432d6e",
         "type": "github"
       },
       "original": {
