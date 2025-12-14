@@ -14,6 +14,7 @@ vim.opt.wildignore:append {
   '*.hi',
   '.DS_Store',
   '**/.git/**',
+  '**/.direnv/**',
 }
 
 vim.cmd.packadd 'vim-vinegar'
