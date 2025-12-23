@@ -44,17 +44,12 @@ let
       yaml
       zig
     ])
-    ++ [
-      haskell
-      koka
-    ];
+    ++ [ haskell ];
   haskell = pkgs.tree-sitter.buildGrammar {
     language = "haskell";
     version = inputs.tree-sitter-haskell.rev;
     src = inputs.tree-sitter-haskell;
   };
-  koka =
-    inputs.tree-sitter-koka.packages.${pkgs.stdenv.hostPlatform.system}.default;
   nvim-treesitter = pkgs.vimPlugins.nvim-treesitter.overrideAttrs {
     src = inputs.nvim-treesitter;
   };

@@ -2,7 +2,7 @@
   description = "My neovim flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs?ref=62b21fb4436e32c7884191bc2fcbb4dc2726f160";
+    nixpkgs.url = "github:NixOS/nixpkgs";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
@@ -10,10 +10,6 @@
     };
     json-fmt = {
       url = "github:Futarimiti/json-fmt/v3-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    tree-sitter-koka = {
-      url = "github:Futarimiti/tree-sitter-koka/fix/flake-overlay-src";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     tree-sitter-haskell = {
