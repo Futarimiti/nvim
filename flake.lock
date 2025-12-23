@@ -116,16 +116,15 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1765508503,
-        "narHash": "sha256-/ECgGwA6CURdjC8uNTMJ1vq2X1GzGdeplbb3zfQL8IM=",
+        "lastModified": 1766499526,
+        "narHash": "sha256-GluPLcowfFXYHjbPKt9GNVy4JnLumCtiwTtoHcIedJw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "62b21fb4436e32c7884191bc2fcbb4dc2726f160",
+        "rev": "cf5212a83824dc74ace7bad3705efdccf6a462b7",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "62b21fb4436e32c7884191bc2fcbb4dc2726f160",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -154,26 +153,10 @@
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
         "nvim-treesitter": "nvim-treesitter",
-        "tree-sitter-haskell": "tree-sitter-haskell",
-        "tree-sitter-koka": "tree-sitter-koka"
+        "tree-sitter-haskell": "tree-sitter-haskell"
       }
     },
     "systems": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_2": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
@@ -201,46 +184,6 @@
       "original": {
         "owner": "tree-sitter",
         "repo": "tree-sitter-haskell",
-        "type": "github"
-      }
-    },
-    "tree-sitter-koka": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "utils": "utils"
-      },
-      "locked": {
-        "lastModified": 1765081109,
-        "narHash": "sha256-TUW+8M7Q3zGcmCStImpnf0Z2ScRyBKi7SqUGeE5mOdE=",
-        "owner": "Futarimiti",
-        "repo": "tree-sitter-koka",
-        "rev": "412d3f7cb6c855cfe95afd1dfaea6b5bc7fdad4e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Futarimiti",
-        "ref": "fix/flake-overlay-src",
-        "repo": "tree-sitter-koka",
-        "type": "github"
-      }
-    },
-    "utils": {
-      "inputs": {
-        "systems": "systems_2"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
         "type": "github"
       }
     }
