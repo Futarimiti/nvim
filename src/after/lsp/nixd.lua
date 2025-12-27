@@ -17,6 +17,9 @@ return {
           expr = '(builtins.getFlake (toString ~/.config/nix-darwin)).darwinConfigurations.Carmans-MacBook-Air.options.home-manager.users.type.getSubOptions []',
         },
       },
+      diagnostic = {
+        suppress = { 'sema-primop-overridden' },
+      },
     },
   },
 }
