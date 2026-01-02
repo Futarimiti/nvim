@@ -8,56 +8,52 @@ let g:colors_name = 'less'
 " ui
 
 highlight! CursorLine guibg=NvimDarkGrey3
-highlight! link ColorColumn CursorLine
-highlight! TabLine guibg=NONE guifg=Grey
-highlight! TabLineSel guibg=NONE guifg=White gui=NONE
+highlight! Folded guifg=NvimDarkGrey4 guibg=NONE
+highlight! NonText guibg=NONE
 highlight! NonText guibg=NONE
 highlight! Normal guibg=NONE
-highlight! NonText guibg=NONE
-highlight! Folded guifg=NvimDarkGrey4 guibg=NONE
+highlight! TabLine guibg=NONE guifg=Grey
+highlight! TabLineSel guibg=NONE guifg=White gui=NONE
+highlight! link ColorColumn CursorLine
 
 " basics
 
-highlight! Function guifg=NvimLightGrey2
-highlight! link Method Function
-highlight! Identifier guifg=NvimLightGrey2
+highlight! Comment guifg=NvimLightGrey4 gui=italic
 highlight! Delimiter guifg=NvimLightGrey2
 highlight! Directory guifg=NvimLightGrey2 gui=bold
+highlight! Function guifg=NvimLightGrey2
+highlight! Identifier guifg=NvimLightGrey2
 highlight! Module gui=italic guifg=NvimLightGrey2
 highlight! Special guifg=NvimLightBlue
-highlight! link Namespace Module
 highlight! Type gui=bold
-highlight! link Constructor Type
 highlight! link Character String
-highlight! Comment guifg=NvimLightGrey4 gui=italic
+highlight! link Constructor Type
+highlight! link Method Function
+highlight! link Namespace Module
 
 " diagnostics
-highlight! ErrorBG guibg=#4a302f gui=NONE
-highlight! WarnBG guibg=#4f3d2e gui=NONE
-highlight! HintBG guibg=#3a5657 gui=NONE
-highlight! link DiagnosticUnderlineError ErrorBG
-highlight! link DiagnosticUnderlineWarn WarnBG
-highlight! link DiagnosticUnderlineHint HintBG
+
 highlight! DiagnosticUnnecessary guifg=NvimLightGrey4
+highlight! ErrorBG guibg=#4a302f gui=NONE
+highlight! HintBG guibg=#3a5657 gui=NONE
+highlight! WarnBG guibg=#4f3d2e gui=NONE
+highlight! link DiagnosticUnderlineError ErrorBG
+highlight! link DiagnosticUnderlineHint HintBG
+highlight! link DiagnosticUnderlineWarn WarnBG
 
 " treesitter
 
-highlight! link @namespace Namespace
+highlight! link @constant.builtin @constant
+highlight! link @constructor Constructor
+highlight! link @function.builtin @function
+highlight! link @identifier Identifier
 highlight! link @module Module
 highlight! link @module.builtin Module
+highlight! link @namespace Namespace
 highlight! link @string.special.path Underlined
-highlight! link @constructor Constructor
-highlight! link @identifier Identifier
-" not sure the purpose of underscore-prefix
-" highlight! link @_method Method
-" highlight! link @_op Operator
-" highlight! link @_name @identifier
-
+highlight! link @tag.attribute @attribute
 highlight! link @type.builtin @type
 highlight! link @variable.builtin @variable
-highlight! link @constant.builtin @constant
-highlight! link @function.builtin @function
-highlight! link @tag.attribute @attribute
 
 " obsession
 
@@ -70,4 +66,5 @@ highlight! link NoicePopupmenuMatch Keyword
 highlight! link NoiceSplit Normal
 
 " per filetype
+" haskell
 highlight! link ConId Type
