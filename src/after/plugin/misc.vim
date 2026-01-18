@@ -18,3 +18,6 @@ set smoothscroll
 " can't use noremap - loses ] remaps
 map g<Tab> ]
 map g<S-Tab> [
+
+" remove blank lines
+command -range=% NoBlank <line1>,<line2>global/^\s*$/delete
