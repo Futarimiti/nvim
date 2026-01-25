@@ -19,27 +19,24 @@ nnoremap <LocalLeader>s :scriptnames **/
 nnoremap <LocalLeader>S
       \ :vimgrep  `=getscriptinfo()->map({_,f->f.name})`<C-Left><Left>
 
-lua << EOF
--- nix
-local nix_darwin = vim.fs.normalize '$XDG_CONFIG_HOME/nix-darwin'
-if vim.fn.isdirectory(nix_darwin) == 0 then return end
-nix_darwin = vim.fn.fnamemodify(nix_darwin, ':~')
-vim.keymap.set('n', '<LocalLeader>n', ':edit ' .. nix_darwin .. '/**/')
-vim.keymap.set('n', '<LocalLeader>N', ':vimgrep  ' .. nix_darwin .. '/**<C-Left><Left>')
-vim.keymap.set('c', '<C-Space>n', nix_darwin .. '/**/', { nowait = true })
-vim.keymap.set('c', '<C-Space><C-N>', '<C-Space>n', { nowait = true, remap = true })
+" nix-darwin
+let nix_darwin = '$XDG_CONFIG_HOME/nix-darwin'
+if isdirectory(expand(nix_darwin))
+  nnoremap <expr> <LocalLeader>n $':edit {nix_darwin}/**/'
+  nnoremap <expr> <LocalLeader>N $':vimgrep  {nix_darwin}/**<C-Left><Left>'
+  cnoremap <nowait> <expr> <C-Space>n $'{nix_darwin}/**/'
+  cmap <nowait> <C-Space><C-N> <C-Space>n
+endif
 
--- oldfiles
-vim.api.nvim_create_user_command('BrowseOldfiles', function(o) vim.cmd.edit(o.args) end, {
-  desc = 'fuzzy search in oldfiles',
-  nargs = 1,
-  complete = function(arg, _, _)
-    return vim
-      .iter(vim.v.oldfiles)
-      :filter(function(f) return vim.re.find(f, vim.glob.to_lpeg(arg .. '*')) ~= nil end)
-      :totable()
-  end,
-})
-vim.keymap.set('n', '<LocalLeader>o', ':BrowseOldfiles ')
-vim.keymap.set('n', '<LocalLeader>O', ':vimgrep  `=v:oldfiles`<C-Left><Left>')
-EOF
+" oldfiles
+command
+      \ -nargs=1
+      \ -complete=customlist,s:BrowseOldfilesComplete
+      \ BrowseOldfiles edit <args>
+
+nnoremap <LocalLeader>o :BrowseOldfiles<Space>
+nnoremap <LocalLeader>O :vimgrep `=v:oldfiles`<C-Left><Left>
+
+function s:BrowseOldfilesComplete(arg, _line, _pos) abort
+  return v:oldfiles->copy()->filter({ _, f -> stridx(f, a:arg) != -1 })
+endfunction
