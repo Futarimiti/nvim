@@ -1,4 +1,4 @@
-require('vim._extui').enable { enable = true, msg = { target = 'msg' } }
+require('vim._core.ui2').enable { enable = true, msg = { target = 'msg' } }
 
 -- :messages now won't output anything but instead creates a split
 -- meaning vim-scriptease :Messages will no longer work; overriding it
