@@ -4,10 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs?rev=4b0b3877942627e2b89d978bad184a8d3c7027d7";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     json-fmt = {
       url = "github:Futarimiti/json-fmt/v3-nix";
       inputs.nixpkgs.follows = "nixpkgs";
