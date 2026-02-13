@@ -1,4 +1,38 @@
+local log = function(...)
+  --
+  -- print(...)
+end
+
+local is_fugitive_buffer = function(buf)
+  return vim.b[buf].fugitive_type ~= nil
+    or vim.startswith(vim.api.nvim_buf_get_name(buf), 'fugitive://')
+end
+
+-- hijack vim.lsp.start implementation
+-- https://www.reddit.com/r/neovim/comments/1r2iy8o/comment/o4xkusa
+vim.lsp.start = (function()
+  local old_lsp_start = vim.lsp.start
+  return function(...)
+    local opt = select(2, ...)
+    -- NOTE if opt or opt.bufnr is nil the entire check is skipped
+    if
+      opt
+      and opt.bufnr
+      and (
+        not vim.api.nvim_buf_is_valid(opt.bufnr)
+        or is_fugitive_buffer(opt.bufnr)
+      )
+    then
+      log('lsp.start: I\'m not attaching to buffer', opt.bufnr)
+      return nil
+    end
+    return old_lsp_start(...)
+  end
+end)()
+
 vim.lsp.config('*', { root_markers = { '.git' } })
+
+-- this will eventually call vim.lsp.start() with opts
 vim.lsp.enable {
   'luals',
   'texlab',
@@ -12,11 +46,13 @@ vim.lsp.enable {
 -- quick enable & disable
 
 local lsp_compl = function(arglead, _, _)
-  return vim
-    .iter(vim.api.nvim_get_runtime_file('lsp/*.lua', true))
-    :map(function(f) return vim.fn.fnamemodify(f, ':t:r') end)
-    :filter(function(name) return vim.startswith(name, arglead) end)
-    :totable()
+  return vim.list.unique(
+    vim
+      .iter(vim.api.nvim_get_runtime_file('lsp/*.lua', true))
+      :map(function(f) return vim.fn.fnamemodify(f, ':t:r') end)
+      :filter(function(name) return vim.startswith(name, arglead) end)
+      :totable()
+  )
 end
 
 vim.api.nvim_create_user_command(
