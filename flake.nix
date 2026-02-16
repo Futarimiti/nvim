@@ -2,7 +2,7 @@
   description = "My neovim flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs?rev=4b0b3877942627e2b89d978bad184a8d3c7027d7";
+    nixpkgs.url = "github:NixOS/nixpkgs";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     json-fmt = {
@@ -11,10 +11,6 @@
     };
     tree-sitter-haskell = {
       url = "github:tree-sitter/tree-sitter-haskell";
-      flake = false;
-    };
-    nvim-treesitter = {
-      url = "github:nvim-treesitter/nvim-treesitter/main";
       flake = false;
     };
   };
@@ -96,7 +92,7 @@
                 bullets-vim
                 camelcasemotion
                 cmdalias-vim
-                nvim-treesitter-textobjects
+                nvim-treesitter-textobjects-legacy
                 otter-nvim
                 quicker-nvim
                 stringbreaker-nvim

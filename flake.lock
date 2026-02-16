@@ -130,34 +130,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1767115913,
-        "narHash": "sha256-Rqi+fPpma9prIXZAqpOgsAxS5qUV7yzc7P1TnpjgIiQ=",
+        "lastModified": 1771220965,
+        "narHash": "sha256-9c+Wlz2z4sReBPTgJkCH19EblQL+VVk+QTjg3HIafcA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4b0b3877942627e2b89d978bad184a8d3c7027d7",
+        "rev": "622f4ae16329deba6c9606e34151ad10f3941de7",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4b0b3877942627e2b89d978bad184a8d3c7027d7",
-        "type": "github"
-      }
-    },
-    "nvim-treesitter": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1770808440,
-        "narHash": "sha256-paM9v2DKiHEwN0fTXuX9eY0KwVsB+9Bv6mOX9u/eyAI=",
-        "owner": "nvim-treesitter",
-        "repo": "nvim-treesitter",
-        "rev": "9f2dad22ef8bb14fd1e0a3aa8859cdc88170668b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nvim-treesitter",
-        "ref": "main",
-        "repo": "nvim-treesitter",
         "type": "github"
       }
     },
@@ -167,7 +149,6 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs_2",
-        "nvim-treesitter": "nvim-treesitter",
         "tree-sitter-haskell": "tree-sitter-haskell"
       }
     },

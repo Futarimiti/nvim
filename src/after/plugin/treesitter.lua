@@ -1,7 +1,7 @@
 -- nvim-treesitter
 
-vim.cmd.packadd 'nvim-treesitter'
-vim.cmd.packadd 'nvim-treesitter-textobjects'
+vim.cmd.packadd 'nvim-treesitter-legacy'
+vim.cmd.packadd 'nvim-treesitter-textobjects-legacy'
 
 require('nvim-treesitter.configs').setup {
   highlight = { enable = true },
