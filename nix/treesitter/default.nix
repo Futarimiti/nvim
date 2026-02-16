@@ -50,8 +50,5 @@ let
     version = inputs.tree-sitter-haskell.rev;
     src = inputs.tree-sitter-haskell;
   };
-  nvim-treesitter = pkgs.vimPlugins.nvim-treesitter.overrideAttrs {
-    src = inputs.nvim-treesitter;
-  };
 in
-nvim-treesitter.withPlugins parsers
+pkgs.vimPlugins.nvim-treesitter-legacy.withPlugins parsers
