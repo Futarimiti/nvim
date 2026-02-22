@@ -18,7 +18,7 @@
       astyle
       yamlfmt
       rustfmt
-      nixfmt-rfc-style
+      nixfmt
       python312Packages.autopep8
       python312Packages.sqlparse # sqlformat
       inputs.json-fmt.packages.${system}.json-fmt
