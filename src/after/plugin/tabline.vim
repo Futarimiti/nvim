@@ -5,7 +5,7 @@ function s:tabline() abort
         \->map({ _, tab -> s:tabsegment(tab.tabnr) })
         \->join()
   let lhs = tablist
-  let rhs = [s:macro()]
+  let rhs = [s:showcmd(), s:macro()]
         \->filter({ _, s -> !empty(s) })
         \->join()
   return $'{lhs}%={rhs}'
@@ -56,21 +56,18 @@ function s:tabname(tabnr) abort
     let cmd = nvim_get_chan_info(chan)->get('argv', [])
     let cmdname = cmd->get(-1, '')->split()->get(0, '')
     let tail = cmdname->fnamemodify(':t')
-    return empty(cmdname) ? '[terminal]' : '!' .. cmdname->fnamemodify(':t')
-  elseif buftype is 'quickfix'
-    return '[QuickFix]'
+    return empty(cmdname) ? '[terminal]' : $'!{tail}'
   elseif buftype is 'help'
     let bname = buf->bufname()
     let tail = bname->fnamemodify(':t')
     return $':h {tail}'
   else
-    return $'[{string#capitalise(buftype)}]'
+    return $'[{buftype}]'
   endif
 endfunction
 
-" unnecessary - tabline updates per normal mode keydown
-" augroup RedrawTabline
-"   autocmd!
-"   autocmd RecordingEnter,RecordingLeave * redrawtabline
-" augroup END
+augroup RedrawTabline
+  autocmd!
+  autocmd RecordingEnter,RecordingLeave * redrawtabline
+augroup END
 
