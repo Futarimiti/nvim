@@ -6,7 +6,7 @@
   system,
   dependencyOverlays ? [ ],
   extra_pkg_config ? { },
-  categories ? import ./nix/categories { inherit inputs; },
+  categories ? import ./nix/categories { inherit inputs system; },
   package ? import ./nix/package { inherit inputs system; },
   pkgsParams ? {
     inherit
