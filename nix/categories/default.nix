@@ -1,4 +1,4 @@
-{ inputs }:
+{ inputs, system }:
 { pkgs, ... }:
 {
   # available at runtime
