@@ -14,6 +14,9 @@ vim.filetype.add {
         return 'nixdrv'
       end
     end,
+    yaml = function(path, _)
+      return path:match '%.dict%.yaml$' and 'rimedict' or 'yaml'
+    end,
   },
   filename = {
     ['package.yaml'] = function(path, _)
