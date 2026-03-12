@@ -12,3 +12,7 @@ nnoremap g'! :Spawn!<Space>
 " wait
 nnoremap '- :Start -wait=always<Space>
 nnoremap g'- :Spawn -wait=always<Space>
+
+" ...
+nmap · `
+nmap ‘ '
