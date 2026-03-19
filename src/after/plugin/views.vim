@@ -5,7 +5,7 @@ set viewoptions-=curdir
 command -bang View call s:view(<bang>0)
 
 " rm -rf <viewdir>
-command -bang DelViews
+command -bang ClearViews
       \ if isdirectory(&viewdir) | call delete(&viewdir, 'rf') | endif
 
 function s:view(bang) abort
