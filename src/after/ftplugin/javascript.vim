@@ -4,3 +4,5 @@
 
 let b:start = '-wait=always node %'
 lua vim.treesitter.start()
+
+setlocal formatprg=js-beautify\ --editorconfig
