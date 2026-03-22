@@ -16,3 +16,5 @@ nnoremap g'- :Spawn -wait=always<Space>
 " ...
 nmap · `
 nmap ‘ '
+
+nnoremap `<BS> <Cmd>AbortDispatch<CR>
