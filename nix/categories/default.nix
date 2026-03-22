@@ -50,6 +50,7 @@
       vim-repeat
       vim-sexp
       vim-speeddating
+      vim-syntax-shakespeare
       whatif-vim
     ];
   };
