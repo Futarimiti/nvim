@@ -23,6 +23,7 @@
       python312Packages.sqlparse # sqlformat
       inputs.json-fmt.packages.${system}.json-fmt
       typstyle
+      js-beautify
 
       # runtime deps
       darwin.trash # netrw
