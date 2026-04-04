@@ -71,7 +71,6 @@
       term-edit-nvim
       (import ./treesitter { inherit inputs pkgs; })
       treewalker-nvim
-      undotree
       vim-dadbod
       vim-dadbod-completion
       vim-dadbod-ui
