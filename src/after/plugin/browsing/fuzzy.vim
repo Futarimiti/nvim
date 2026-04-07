@@ -19,15 +19,6 @@ nnoremap <LocalLeader>s :scriptnames **/
 nnoremap <LocalLeader>S
       \ :vimgrep  `=getscriptinfo()->map({_,f->f.name})`<C-Left><Left>
 
-" nix-darwin
-let nix_darwin = '$XDG_CONFIG_HOME/nix-darwin'
-if isdirectory(expand(nix_darwin))
-  nnoremap <expr> <LocalLeader>n $':edit {nix_darwin}/**/'
-  nnoremap <expr> <LocalLeader>N $':vimgrep  {nix_darwin}/**<C-Left><Left>'
-  cnoremap <nowait> <expr> <C-Space>n $'{nix_darwin}/**/'
-  cmap <nowait> <C-Space><C-N> <C-Space>n
-endif
-
 " oldfiles
 command
       \ -nargs=1
