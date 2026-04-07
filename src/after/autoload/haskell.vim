@@ -9,7 +9,7 @@ function haskell#get_indent() abort
   if type(raw_indents) == v:t_number
     return raw_indents
   endif
-  assert_equal(v:t_list, type(raw_indents))
+  call assert_equal(v:t_list, type(raw_indents))
   let possible_indents = sort(raw_indents)->uniq()
   if empty(possible_indents)
     return -1
