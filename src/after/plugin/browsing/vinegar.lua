@@ -15,6 +15,8 @@ vim.opt.wildignore:append {
   '.DS_Store',
   '**/.git/**',
   '**/.direnv/**',
+  -- avoid searching in result directory (nix build output)
+  '/nix/store/**',
 }
 
 vim.cmd.packadd 'vim-vinegar'
