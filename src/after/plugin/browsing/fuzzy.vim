@@ -14,6 +14,14 @@ nnoremap <LocalLeader>R :vimgrep  $VIMRUNTIME/**<C-Left><Left>
 cnoremap <nowait> <C-Space>r $VIMRUNTIME/**/
 cmap <nowait> <C-Space><C-R> <C-Space>r
 
+" full runtimepath
+packadd vim-scriptease
+nnoremap <LocalLeader>v :Vedit **/
+" :Vedit the file under cursor (like gf); default gV is almost useless
+nnoremap gV :Vedit **/<C-R><C-F><CR>
+" XXX pollutes "9
+xnoremap gV "9y:Vedit **/<C-R>9<CR>
+
 " scriptnames
 nnoremap <LocalLeader>s :scriptnames **/
 nnoremap <LocalLeader>S
