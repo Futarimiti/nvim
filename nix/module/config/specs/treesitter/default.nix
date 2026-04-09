@@ -51,4 +51,14 @@ let
     src = inputs.tree-sitter-haskell;
   };
 in
-pkgs.vimPlugins.nvim-treesitter-legacy.withPlugins parsers
+{
+  config.specs.treesitter = {
+    lazy = true;
+    data = with pkgs.vimPlugins; [
+      (nvim-treesitter-legacy.withPlugins parsers)
+      nvim-treesitter-textobjects-legacy
+      treewalker-nvim
+    ];
+    extraPackages = [ pkgs.tree-sitter ];
+  };
+}
