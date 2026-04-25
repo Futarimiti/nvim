@@ -23,17 +23,14 @@
       flake-parts,
       ...
     }@inputs:
-    let
-      module = nixpkgs.lib.modules.importApply ./nix/module inputs;
-      wrapper = wrappers.lib.evalModule module;
-    in
     flake-parts.lib.mkFlake { inherit inputs; } {
       perSystem =
-        { system, ... }:
+        { pkgs, ... }:
         {
           packages.default =
             let
-              pkgs = import nixpkgs { inherit system; };
+              module = nixpkgs.lib.modules.importApply ./nix/module inputs;
+              wrapper = wrappers.lib.evalModule module;
             in
             wrapper.config.wrap { inherit pkgs; };
         };
