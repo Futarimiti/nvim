@@ -1,10 +1,20 @@
 # Update inputs && commit
 update *inputs:
-  git checkout flake
-  nix flake update {{inputs}}
-  @if git diff --quiet flake.lock; \
-  then echo "No updates made"; \
-  else \
-    git add flake.lock; \
-    git commit -m "update(flake.lock): $(date '+%Y-%m-%d %H:%M:%S')"; \
-  fi
+  #!/usr/bin/env python3
+  def eprint(*args, **kwargs):
+    import sys
+    print(*args, file=sys.stderr, **kwargs)
+  def run(cmdargs, check=True):
+    import subprocess
+    eprint(*cmdargs)
+    return subprocess.run(cmdargs, check=check)
+  inputs = '{{inputs}}'.split()
+  run(['nix', 'flake', 'update', *inputs])
+  if run(['git', 'diff', '--quiet', 'flake.lock'], check=False).returncode:
+    run(['git', 'add', 'flake.lock'])
+    inputs = ', '.join(inputs) or 'flake inputs'
+    from datetime import datetime
+    time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    run(['git', 'commit', '-m', f'chore: update {inputs} on {time}'])
+  else:
+    eprint('No updates made')
