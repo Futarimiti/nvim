@@ -37,9 +37,16 @@ endfunction
 " work out a proper display name for a buffer
 function s:bufdisp(buf) abort
   let bufname = a:buf->bufname()
+  if empty(bufname)
+    return '[No Name]'
+  endif
+  let buftype = a:buf->getbufvar('&buftype')
   " simplify bufname only if is a normal buffer
-  if a:buf->getbufvar('&buftype') is ''
-    let bufname = bufname->simplify()->fnamemodify(':.')
+  if buftype is ''
+    return bufname->simplify()->fnamemodify(':.')
+  elseif buftype is 'help'
+    " only leave the last component (xxx.txt) for help buffer
+    return bufname->simplify()->fnamemodify(':t')
   endif
   return empty(bufname) ? '[No Name]' : bufname
 endfunction
