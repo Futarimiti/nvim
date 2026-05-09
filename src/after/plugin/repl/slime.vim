@@ -11,3 +11,6 @@ nmap <C-C><Space> :SlimeSend1<Space>
 nmap <C-C><C-Space> :SlimeSend1<Space>
 nmap <C-C>v <Plug>SlimeConfig
 nmap <C-C><C-V> <C-C>v
+
+" disable nmap in cmdwin
+autocmd CmdwinEnter * nnoremap <buffer> <nowait> <C-C> <C-C>
