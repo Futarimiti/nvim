@@ -4,3 +4,4 @@
 " setlocal textwidth=80
 setlocal keywordprg=:help
 setlocal formatprg=stylua\ -s\ -
+setlocal conceallevel=2
