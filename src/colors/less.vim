@@ -15,6 +15,7 @@ highlight! Normal guibg=NONE
 highlight! TabLine guibg=NONE guifg=Grey
 highlight! TabLineSel guibg=NONE guifg=White gui=NONE
 highlight! link ColorColumn CursorLine
+highlight! link Conceal Special
 
 " basics
 
