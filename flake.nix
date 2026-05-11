@@ -22,12 +22,19 @@
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       perSystem =
-        { pkgs, ... }:
+        { system, ... }:
         {
           packages.default =
             let
               module = nixpkgs.lib.modules.importApply ./nix/module inputs;
               wrapper = wrappers.lib.evalModule module;
+              pkgs = import nixpkgs {
+                inherit system;
+                # vimPlugins that lack license are automatically marked unfree
+                # (even when they are actually not)
+                # must allow unfree for successful evaluation
+                config.allowUnfreePredicate = pkg: pkg.passthru.vimPlugin;
+              };
             in
             wrapper.config.wrap { inherit pkgs; };
         };
