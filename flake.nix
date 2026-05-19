@@ -47,9 +47,13 @@
     };
 
   nixConfig = {
-    extra-substituters = [ "https://nix-community.cachix.org" ];
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+      "https://futarimiti.cachix.org"
+    ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "futarimiti.cachix.org-1:IGMsvnbRz4LniUy06SNfCVJfLxt6rV3c33//Fb75/2g=c"
     ];
   };
 }
