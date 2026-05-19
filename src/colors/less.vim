@@ -31,6 +31,7 @@ highlight! link Character String
 highlight! link Constructor Type
 highlight! link Method Function
 highlight! link Namespace Module
+highlight! link Boolean Keyword
 
 " diagnostics
 
@@ -55,6 +56,10 @@ highlight! link @string.special.path Underlined
 highlight! link @tag.attribute @attribute
 highlight! link @type.builtin @type
 highlight! link @variable.builtin @variable
+highlight! link @variable.parameter @variable
+highlight! link @variable.parameter.builtin @variable
+highlight! link @variable.member @variable
+highlight! link @boolean Boolean
 
 " obsession
 
@@ -69,3 +74,4 @@ highlight! link NoiceSplit Normal
 " per filetype
 " haskell
 highlight! link ConId Type
+highlight! link @boolean.haskell Constructor
