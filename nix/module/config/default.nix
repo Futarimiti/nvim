@@ -26,8 +26,6 @@
         };
       };
 
-    extraPackages = config.specCollect (
-      acc: v: acc ++ (v.extraPackages or [ ])
-    ) [ ];
+    runtimePkgs = config.specCollect (acc: v: acc ++ (v.extraPackages or [ ])) [ ];
   };
 }
