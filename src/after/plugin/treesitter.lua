@@ -1,19 +1,14 @@
 -- nvim-treesitter
 
+-- incremental selection
+vim.keymap.set('v', '+', 'an', { remap = true })
+vim.keymap.set('v', '-', 'in', { remap = true })
+
 vim.cmd.packadd 'nvim-treesitter-legacy'
 vim.cmd.packadd 'nvim-treesitter-textobjects-legacy'
 
 require('nvim-treesitter.configs').setup {
   highlight = { enable = true },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      -- init_selection = 'gnn',
-      -- scope_incremental = 'grc',
-      node_incremental = '+',
-      node_decremental = '-',
-    },
-  },
   indent = { enable = true },
   textobjects = {
     select = {
