@@ -1,3 +1,10 @@
+build *args='-L':
+  nix build . {{args}}
+
+[default]
+run *args:
+  nix run . {{args}}
+
 # Update inputs && commit
 update *inputs:
   #!/usr/bin/env python3
@@ -18,3 +25,6 @@ update *inputs:
     run(['git', 'commit', '-m', f'chore: update {inputs} on {time}'])
   else:
     eprint('No updates made')
+
+cache: build
+  cachix push futarimiti result
