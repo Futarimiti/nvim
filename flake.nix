@@ -7,10 +7,6 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
     json-fmt.url = "github:Futarimiti/json-fmt/v3-nix";
-    tree-sitter-haskell = {
-      url = "github:tree-sitter/tree-sitter-haskell";
-      flake = false;
-    };
   };
 
   outputs =
