@@ -197,7 +197,6 @@
         "json-fmt": "json-fmt",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs_3",
-        "tree-sitter-haskell": "tree-sitter-haskell",
         "wrappers": "wrappers"
       }
     },
@@ -213,22 +212,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "tree-sitter-haskell": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1738310106,
-        "narHash": "sha256-0wmdbXHZbHkv4pTrB1fCbExx9E83l+zaocGa+SvQsZQ=",
-        "owner": "tree-sitter",
-        "repo": "tree-sitter-haskell",
-        "rev": "0975ef72fc3c47b530309ca93937d7d143523628",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tree-sitter",
-        "repo": "tree-sitter-haskell",
         "type": "github"
       }
     },
