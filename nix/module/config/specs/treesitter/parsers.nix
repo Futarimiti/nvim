@@ -1,0 +1,45 @@
+ps:
+with ps; # pkgs.tree-sitter.builtGrammars.tree-sitter-*
+[
+  bash
+  c
+  c_sharp
+  comment
+  css
+  dhall
+  editorconfig
+  git_config
+  git_rebase
+  gitattributes
+  gitcommit
+  gitignore
+  go
+  groovy
+  haskell
+  haskell_persistent
+  idris
+  java
+  javascript
+  json
+  just
+  latex
+  lua
+  luadoc
+  markdown
+  nix
+  properties
+  python
+  query
+  regex
+  rust
+  scala
+  scheme
+  sql
+  toml
+  typst
+  vim
+  vimdoc
+  xml
+  yaml
+  zig
+]
