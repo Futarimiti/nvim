@@ -4,7 +4,7 @@
 ; current only support ''indented_string_expression''s
 (binding
   attrpath: (attrpath
-			  attr: (identifier) @id)
+    attr: (identifier) @id)
   (#any-of? @id
    "shellInit"
    "interactiveShellInit"
@@ -13,7 +13,7 @@
    "script"
    "direnvrcExtra")
   expression: (indented_string_expression
-				(string_fragment) @injection.content)
+    (string_fragment) @injection.content)
   (#set! injection.language "sh"))
 
 ; TODO: homebrew.extraConfig - ruby syntax

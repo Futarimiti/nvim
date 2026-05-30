@@ -2,9 +2,7 @@
 
 (import_from_statement
   module_name: (dotted_name
-    (identifier) @module)
-  )
-
+    (identifier) @module))
 
 (import_statement
   name: (dotted_name
