@@ -25,3 +25,6 @@ command -range=% NoBlank <line1>,<line2>global/^\s*$/delete
 " capitalise
 nnoremap <silent> gC :s/\v<(.)(\w*)/\u\1\L\2/g<Bar>noh<CR>
 xnoremap <silent> gC :s/\v<(.)(\w*)/\u\1\L\2/g<Bar>noh<CR>
+
+" <S-CR> default behaviour is unnoticeable
+noremap <S-CR> <NOP>
