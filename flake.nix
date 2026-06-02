@@ -22,7 +22,7 @@
         {
           packages.default =
             let
-              module = nixpkgs.lib.modules.importApply ./nix/module inputs;
+              module = nixpkgs.lib.modules.importApply nix/module inputs;
               wrapper = wrappers.lib.evalModule module;
               pkgs = import nixpkgs {
                 inherit system;
