@@ -7,6 +7,7 @@ with ps; # pkgs.tree-sitter.builtGrammars.tree-sitter-*
   comment
   css
   dhall
+  diff
   editorconfig
   git_config
   git_rebase
