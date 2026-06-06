@@ -5,4 +5,4 @@ setlocal iskeyword+=-
 setlocal suffixesadd+=/default.nix
 
 setlocal textwidth=80
-let &l:formatprg = $'nixfmt --width={&l:textwidth}'
+let &l:formatprg = $'nixfmt --width={&l:textwidth} -'
