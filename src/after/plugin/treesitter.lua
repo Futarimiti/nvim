@@ -1,7 +1,3 @@
--- at the moment we still need nvim-treesitter for indent
-vim.g.loaded_nvim_treesitter = true -- disable :TSInstall :TSUpdate etc commands
-vim.cmd.packadd 'nvim-treesitter'
-
 -- incremental selection
 vim.keymap.set('v', '+', 'an', { remap = true })
 vim.keymap.set('v', '-', 'in', { remap = true })
