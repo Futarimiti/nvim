@@ -6,3 +6,5 @@ let b:start = '-wait=always node %'
 lua vim.treesitter.start()
 
 setlocal formatprg=js-beautify\ --editorconfig
+lua vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+setlocal foldmethod=expr
