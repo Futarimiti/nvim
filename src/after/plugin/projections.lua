@@ -32,7 +32,7 @@ vim.g.projectionist_heuristics = {
   ['flake.nix'] = {
     ['*'] = {
       console = [[nix repl --expr "builtins.getFlake \"$PWD\"" --keep-failed]],
-      dispatch = 'nix build --keep-failed -L',
+      dispatch = 'nix build -L',
       make = 'nix',
       start = '-wait=always nix run',
     },
