@@ -7,6 +7,10 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
     json-fmt.url = "github:Futarimiti/json-fmt/v3-nix";
+    tree-sitter-atob = {
+      url = "github:Futarimiti/tree-sitter-atob";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -14,6 +18,7 @@
       nixpkgs,
       wrappers,
       flake-parts,
+      tree-sitter-atob,
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -30,6 +35,7 @@
                 # (even when they are actually not)
                 # must allow unfree for successful evaluation
                 config.allowUnfreePredicate = pkg: pkg.passthru.vimPlugin;
+                overlays = [ tree-sitter-atob.overlays.${system}.default ];
               };
             in
             wrapper.config.wrap { inherit pkgs; };

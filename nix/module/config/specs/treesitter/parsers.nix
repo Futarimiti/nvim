@@ -1,6 +1,9 @@
+{ pkgs, ... }:
 ps:
 with ps; # pkgs.tree-sitter.builtGrammars.tree-sitter-*
 [
+  # atob # undefined variable
+  pkgs.vimPlugins.nvim-treesitter.grammarPlugins.atob
   bash
   c
   c_sharp

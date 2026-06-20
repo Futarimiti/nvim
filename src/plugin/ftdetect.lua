@@ -17,6 +17,7 @@ vim.filetype.add {
     yaml = function(path, _)
       return path:match '%.dict%.yaml$' and 'rimedict' or 'yaml'
     end,
+    ab = 'atob',
   },
   filename = {
     ['package.yaml'] = function(path, _)
