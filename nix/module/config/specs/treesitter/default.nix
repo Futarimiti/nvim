@@ -7,7 +7,7 @@
     data =
       let
         p = pkgs.vimPlugins;
-        parsers = import ./parsers.nix;
+        parsers = import ./parsers.nix { inherit pkgs; };
       in
       [
         (p.nvim-treesitter.withPlugins parsers)
