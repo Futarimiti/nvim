@@ -21,6 +21,7 @@ with ps; # pkgs.tree-sitter.builtGrammars.tree-sitter-*
   groovy
   haskell
   haskell_persistent
+  html
   idris
   java
   javascript
