@@ -10,6 +10,7 @@
   imports = [
     ./specs
     ./settings
+    ./hosts
   ];
 
   config = {
