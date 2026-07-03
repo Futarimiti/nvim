@@ -47,6 +47,11 @@ function s:bufdisp(buf) abort
   elseif buftype is 'help'
     " only leave the last component (xxx.txt) for help buffer
     return bufname->simplify()->fnamemodify(':t')
+  elseif buftype is 'nowrite'
+    let filetype = a:buf->getbufvar('&filetype')
+    if filetype is 'directory'
+      return bufname[-1:] is '/' ? bufname : bufname .. '/'
+    endif
   endif
   return empty(bufname) ? '[No Name]' : bufname
 endfunction
