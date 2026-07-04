@@ -32,6 +32,7 @@ highlight! link Constructor Type
 highlight! link Method Function
 highlight! link Namespace Module
 highlight! link Boolean Keyword
+highlight! link Symlink Special
 
 " diagnostics
 
@@ -70,6 +71,10 @@ highlight! ObsessionInactive gui=NONE
 
 highlight! link NoicePopupmenuMatch Keyword
 highlight! link NoiceSplit Normal
+
+" oil
+
+highlight! link OilLink Symlink
 
 " per filetype
 " haskell

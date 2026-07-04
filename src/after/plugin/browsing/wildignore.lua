@@ -1,4 +1,3 @@
--- must set before vim-vinegar got sourced and starts to pick up wig
 vim.opt.wildignore:append {
   '*.o',
   '*.obj',
@@ -18,5 +17,3 @@ vim.opt.wildignore:append {
   -- avoid searching in result directory (nix build output)
   '/nix/store/**',
 }
-
-vim.cmd.packadd 'vim-vinegar'
