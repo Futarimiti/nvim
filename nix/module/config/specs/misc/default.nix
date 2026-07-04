@@ -31,7 +31,6 @@
         bullets-vim
         camelcasemotion
         cmdalias-vim
-        otter-nvim
         stringbreaker-nvim
         switch-vim
         term-edit-nvim
