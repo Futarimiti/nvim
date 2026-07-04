@@ -1,3 +1,5 @@
+vim.treesitter.language.register('latex', 'plaintex')
+vim.treesitter.language.register('latex', 'tex')
 vim.treesitter.language.register('diff', 'git')
 
 -- incremental selection

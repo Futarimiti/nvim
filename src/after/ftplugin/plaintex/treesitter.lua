@@ -1,1 +1,1 @@
-vim.treesitter.start(0, 'latex')
+vim.treesitter.start()
