@@ -1,3 +1,5 @@
+vim.treesitter.language.register('diff', 'git')
+
 -- incremental selection
 vim.keymap.set('v', '+', 'an', { remap = true })
 vim.keymap.set('v', '-', 'in', { remap = true })
