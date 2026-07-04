@@ -3,10 +3,10 @@
   config.specs.file-explorers = {
     lazy = true;
     data = with pkgs.vimPlugins; [
-      vim-vinegar
+      oil-nvim
     ];
     extraPackages = with pkgs; [
-      darwin.trash # netrw
+      darwin.trash
     ];
   };
 }

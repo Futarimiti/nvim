@@ -41,6 +41,7 @@ function s:bufdisp(buf) abort
     return '[No Name]'
   endif
   let buftype = a:buf->getbufvar('&buftype')
+  let filetype = a:buf->getbufvar('&filetype')
   " simplify bufname only if is a normal buffer
   if buftype is ''
     return bufname->simplify()->fnamemodify(':.')
@@ -48,9 +49,16 @@ function s:bufdisp(buf) abort
     " only leave the last component (xxx.txt) for help buffer
     return bufname->simplify()->fnamemodify(':t')
   elseif buftype is 'nowrite'
-    let filetype = a:buf->getbufvar('&filetype')
     if filetype is 'directory'
       return bufname[-1:] is '/' ? bufname : bufname .. '/'
+    endif
+  elseif buftype is 'acwrite'
+    " oil.nvim
+    if filetype is 'oil'
+      " oil:///home/...
+      " ^^^^^^
+      let cwd = luaeval("require('oil').get_current_dir()")
+      return cwd->simplify()->fnamemodify(':.') ?? '.'
     endif
   endif
   return empty(bufname) ? '[No Name]' : bufname
