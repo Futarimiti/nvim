@@ -5,6 +5,9 @@ build *args='-L':
 run *args:
   nix run . {{args}}
 
+runs *args:
+  nix run . -- -S Session.vim {{args}}
+
 # Update inputs && commit
 update *inputs:
   #!/usr/bin/env python3
