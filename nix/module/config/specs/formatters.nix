@@ -16,8 +16,6 @@
       nixfmt
       python312Packages.autopep8
       python312Packages.sqlparse # sqlformat
-      # broken?
-      # inputs.json-fmt.packages.${pkgs.stdenv.system}.json-fmt
       typstyle
       js-beautify
     ];
