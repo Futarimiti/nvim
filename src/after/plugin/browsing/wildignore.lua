@@ -16,4 +16,6 @@ vim.opt.wildignore:append {
   '**/.direnv/**',
   -- avoid searching in result directory (nix build output)
   '/nix/store/**',
+  -- never becomes useful
+  '.CFUserTextEncoding',
 }
