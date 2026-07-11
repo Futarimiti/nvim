@@ -6,7 +6,6 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
-    json-fmt.url = "github:Futarimiti/json-fmt/v3-nix";
     tree-sitter-atob = {
       url = "github:Futarimiti/tree-sitter-atob";
       inputs.nixpkgs.follows = "nixpkgs";
