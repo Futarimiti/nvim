@@ -1,0 +1,45 @@
+{ "*":
+  { "make": "just"
+  , "dispatch": "just build"
+  , "start": "just run"
+  , "console": "nix repl --expr \"builtins.getFlake \\\"$PWD\\\"\""
+  }
+, "*.nix":
+  { "template":
+    [ "{open} ... {close}:"
+    , "{"
+    , "}"
+    ]
+  }
+, "src/after/ftplugin/*/treesitter.lua":
+  { "template": [ "vim.treesitter.start()" ]
+  , "type": "treesitter"
+  }
+, "src/after/lsp/*.lua":
+  { "template":
+    [ "---@type vim.lsp.Config"
+    , "return {open}"
+    , "  name = '{}',"
+    , "{close}"
+    ]
+  , "type": "lsp"
+  }
+, "src/compiler/*.vim":
+  { "template":
+    [ "if exists(\"current_compiler\")"
+    , "  finish"
+    , "endif"
+    , "let current_compiler = \"{}\""
+    , ""
+    , "let s:cpo_save = &cpo"
+    , "set cpo&vim"
+    , ""
+    , "CompilerSet makeprg={}"
+    , "CompilerSet errorformat="
+    , ""
+    , "let &cpo = s:cpo_save"
+    , "unlet s:cpo_save"
+    ]
+  , "type": "compiler"
+  }
+}
