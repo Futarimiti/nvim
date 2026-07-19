@@ -52,14 +52,10 @@ function s:bufdisp(buf) abort
     if filetype is 'directory'
       return bufname[-1:] is '/' ? bufname : bufname .. '/'
     endif
-  elseif buftype is 'acwrite'
-    " oil.nvim
-    if filetype is 'oil'
-      " oil:///home/...
-      " ^^^^^^
-      let cwd = luaeval("require('oil').get_current_dir()")
-      return cwd->simplify()->fnamemodify(':.') ?? '.'
-    endif
+  elseif buftype is 'acwrite' && a:buf->getbufvar('&filetype') is 'oil'
+    " oil:///home/...
+    " ^^^^^^
+    return bufname[6:]->simplify()->fnamemodify(':.') ?? '.'
   endif
   return empty(bufname) ? '[No Name]' : bufname
 endfunction
