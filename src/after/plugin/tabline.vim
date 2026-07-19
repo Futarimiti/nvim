@@ -61,6 +61,10 @@ function s:tabname(tabnr) abort
     let bname = buf->bufname()
     let tail = bname->fnamemodify(':t')
     return $':h {tail}'
+  elseif buftype is 'acwrite' && buf->getbufvar('&filetype') is 'oil'
+    " oil:///home/...
+    " ^^^^^^
+    return buf->bufname()[6:]->simplify()->fnamemodify(':.') ?? '.'
   else
     return $'[{buftype}]'
   endif
