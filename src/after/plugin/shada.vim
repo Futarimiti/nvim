@@ -1,0 +1,1 @@
+set shada+=roil://,rfugitive://
