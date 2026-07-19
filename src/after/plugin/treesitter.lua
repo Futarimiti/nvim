@@ -1,6 +1,7 @@
 vim.treesitter.language.register('latex', 'plaintex')
 vim.treesitter.language.register('latex', 'tex')
 vim.treesitter.language.register('diff', 'git')
+vim.treesitter.language.register('html', 'xhtml')
 
 -- incremental selection
 vim.keymap.set('v', '+', 'an', { remap = true })
