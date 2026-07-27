@@ -28,6 +28,7 @@ ps:
     haskell
     haskell_persistent
     html
+    htmldjango
     idris
     java
     javascript
