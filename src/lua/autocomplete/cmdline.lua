@@ -1,5 +1,4 @@
--- BETA
-if true then return end
+-- module: cmdline autocompletion
 
 vim.cmd [[set wim=noselect:lastused,full wop=pum wcm=<C-@> wmnu]]
 
@@ -18,7 +17,9 @@ local cmd_complete = function(cur_cmdline)
     vim.api.nvim_feedkeys(vim.keycode '<C-@>', 'ti', false)
     vim.opt.eventignore:append 'CmdlineChanged'
     vim.fn.timer_start(0, function(_)
-      vim.fn.setcmdline(vim.fn.substitute(vim.fn.getcmdline(), [[\%x00$]], '', ''))
+      vim.fn.setcmdline(
+        vim.fn.substitute(vim.fn.getcmdline(), [[\%x00$]], '', '')
+      )
       vim.opt.eventignore:remove 'CmdlineChanged'
     end)
   end
