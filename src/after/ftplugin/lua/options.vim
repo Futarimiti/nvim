@@ -3,5 +3,5 @@
 " setlocal expandtab
 " setlocal textwidth=80
 setlocal keywordprg=:help
-setlocal formatprg=stylua\ -s\ -
+setlocal formatprg=stylua\ -
 setlocal conceallevel=2
