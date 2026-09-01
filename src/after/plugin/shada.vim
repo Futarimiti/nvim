@@ -1,1 +1,1 @@
-set shada+=roil://,rfugitive://
+set shada+=roil://,rfugitive://,rman://
