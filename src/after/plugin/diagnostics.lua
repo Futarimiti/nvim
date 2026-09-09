@@ -1,6 +1,7 @@
 vim.diagnostic.config {
   virtual_text = false,
   float = { scope = 'cursor' },
+  jump = { on_jump = function(_, _) vim.diagnostic.open_float() end },
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = '',
@@ -16,18 +17,6 @@ vim.diagnostic.config {
     },
   },
 }
-
--- keymaps
-vim.keymap.set(
-  'n',
-  '[d',
-  function() vim.diagnostic.jump { count = -1, float = true } end
-)
-vim.keymap.set(
-  'n',
-  ']d',
-  function() vim.diagnostic.jump { count = 1, float = true } end
-)
 
 vim.keymap.set(
   'n',
