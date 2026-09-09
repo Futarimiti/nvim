@@ -33,9 +33,10 @@ local get_hl = function(buf, lnum, col)
     :last()
 end
 
+-- breaks a line into (char, highlight_group) tuples
 ---@param buf integer non-zero
 ---@param lnum integer (1-based)
----@return Iter<string,string?>
+---@return vim.Iter<string,string?>
 local get_segments = function(buf, lnum)
   return vim
     .iter(ipairs(vim.split(vim.fn.getbufoneline(buf, lnum), '')))
@@ -56,7 +57,6 @@ end
 -- endmarker displayed unless b:use_indent set to truthy value
 ---@return ([string,string]|[string])[]
 Foldtext = function()
-  require 'monkey-patches.iter' -- XXX Iter:dropwhile
   vim.api.nvim_set_hl(0, 'Folded', {}) -- no longer need that
   local buf = vim.api.nvim_get_current_buf()
   local start, finish = {}, {}
@@ -64,7 +64,7 @@ Foldtext = function()
   start.segments = get_segments(buf, vim.v.foldstart):totable()
   finish.segments = show_endmarker
       and get_segments(buf, vim.v.foldend)
-        :dropwhile(function(ch, _) return ch:match '%s' end)
+        :skip(function(ch, _) return ch:match '%s' end)
         :totable()
     or nil
 
