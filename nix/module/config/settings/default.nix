@@ -1,4 +1,4 @@
-{ ... }:
+_:
 {
   config.settings = {
     config_directory = ../../../../src;

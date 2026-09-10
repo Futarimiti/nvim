@@ -18,7 +18,7 @@
       inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
 
     specMods =
-      { ... }:
+      _:
       {
         options.extraPackages = lib.mkOption {
           type = lib.types.listOf wlib.types.stringable;
