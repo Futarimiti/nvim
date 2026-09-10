@@ -5,3 +5,5 @@ vim.bo.syntax = 'ON'
 
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+
+vim.b.use_indent = true
