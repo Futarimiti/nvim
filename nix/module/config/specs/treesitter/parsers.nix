@@ -2,9 +2,7 @@
 ps:
 [
   pkgs.vimPlugins.nvim-treesitter.grammarPlugins.atob
-  (pkgs.vimPlugins.nvim-treesitter.grammarToPlugin (
-    pkgs.tree-sitter-grammars.tree-sitter-mail
-  ))
+  (pkgs.vimPlugins.nvim-treesitter.grammarToPlugin pkgs.tree-sitter-grammars.tree-sitter-mail)
 ]
 ++ (
   with ps; # pkgs.tree-sitter.builtGrammars.tree-sitter-*
