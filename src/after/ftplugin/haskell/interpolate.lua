@@ -1,7 +1,5 @@
--- XXX ts parser currently broken
-if true then return end
-
 -- variable interpolation highlights
+-- escape sequence: #{expr}
 
 vim.api.nvim_set_hl(0, 'InterpolateContent', { link = 'Special' })
 vim.api.nvim_set_hl(0, 'InterpolateOpeningBrace', { link = 'Special' })
