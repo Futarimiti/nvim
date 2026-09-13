@@ -1,7 +1,5 @@
--- XXX ts parser currently broken
-if true then return end
-
--- variable interpolation highlights
+-- rawstring closing quote highlight
+-- escape sequence: |~]
 
 vim.api.nvim_set_hl(0, 'RQClosingQuote', { link = 'Special' })
 
