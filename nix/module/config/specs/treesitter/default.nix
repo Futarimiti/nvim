@@ -13,6 +13,7 @@
         (p.nvim-treesitter.withPlugins parsers)
         p.nvim-treesitter-textobjects
         p.treewalker-nvim
+        p.treesj
       ];
     extraPackages = [ ];
   };
