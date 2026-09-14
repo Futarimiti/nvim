@@ -68,3 +68,13 @@ vim.keymap.set(
   treewalker.swap_right,
   { desc = 'Treewalker SwapRight' }
 )
+
+-- treesj
+vim.cmd.packadd 'treesj'
+local tsj = require 'treesj'
+vim.keymap.set('n', '<leader>m', tsj.toggle)
+vim.keymap.set(
+  'n',
+  '<leader>M',
+  function() tsj.toggle { split = { recursive = true } } end
+)
