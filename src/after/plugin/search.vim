@@ -1,3 +1,4 @@
+" _gr_ep the keyword under cursor.
 " * intentionally ignore wildignores - use external grepprg
 " * only search in files with the exact extension (e.g. hs /= lhs, js /= ts)
 
@@ -14,3 +15,9 @@ function s:vgr() abort
   execute $'silent grep! ''{sel}'' **/*.%:e'
   copen
 endfunction
+
+" always use \v (very magic) in search patterns
+nnoremap / /\v
+xnoremap / /\v
+nnoremap ? ?\v
+xnoremap ? ?\v
