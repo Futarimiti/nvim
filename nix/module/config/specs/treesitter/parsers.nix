@@ -13,6 +13,7 @@ ps:
     c_sharp
     comment
     css
+    csv
     dhall
     diff
     editorconfig
