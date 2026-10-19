@@ -46,6 +46,7 @@ ps:
     scala
     scheme
     sql
+    todotxt
     toml
     typst
     vim

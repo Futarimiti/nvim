@@ -34,5 +34,7 @@ vim.filetype.add {
     ['lakefile.lean'] = 'lean.lake',
     ['lean-toolchain'] = 'leantoolchain',
     Brewfile = 'ruby',
+    ['todo.txt'] = 'todo',
+    ['done.txt'] = 'todo',
   },
 }
