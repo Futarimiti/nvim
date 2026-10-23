@@ -12,11 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - id: date
-        run: echo "today=$(date +'%Y-%m-%d %H:%M:%S')" >> "$GITHUB_OUTPUT"
+        run: echo "now=$(date +'%Y-%m-%d %H:%M:%S')" >> "$GITHUB_OUTPUT"
       - uses: DeterminateSystems/determinate-nix-action@v3
       - uses: DeterminateSystems/update-flake-lock@main
         with:
-          pr-title: 'chore: update flake inputs on ${{ steps.date.outputs.today }}'
+          pr-title: 'chore: update flake inputs on ${{ steps.date.outputs.now }}'
           pr-labels: |
             dependencies
             automated
