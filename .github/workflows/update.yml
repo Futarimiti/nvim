@@ -1,0 +1,23 @@
+name: 'update flake lock'
+# manual triggering only at the moment
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '0 0 * * 0'
+jobs:
+  nix-flake-update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v6
+      - id: date
+        run: echo "now=$(date +'%Y-%m-%d %H:%M:%S')" >> "$GITHUB_OUTPUT"
+      - uses: DeterminateSystems/determinate-nix-action@v3
+      - uses: DeterminateSystems/update-flake-lock@main
+        with:
+          pr-title: 'chore: update flake inputs on ${{ steps.date.outputs.now }}'
+          pr-labels: |
+            dependencies
+            automated

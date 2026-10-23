@@ -2,6 +2,8 @@ name: 'build & cache'
 on:
   push:
     branches: [flake]
+  pull_request:
+  workflow_dispatch:
 jobs:
   cache-build:
     strategy:
