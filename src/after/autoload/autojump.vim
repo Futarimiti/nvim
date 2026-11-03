@@ -8,6 +8,7 @@ function autojump#j(dest) abort
     let [dest] = res
     " use cd for global
     lcd `=dest`
+    edit .
     pwd
   else
     echoerr 'unexpected autojump output: ' .. string(res)
