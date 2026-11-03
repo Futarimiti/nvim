@@ -23,21 +23,27 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       perSystem =
         { system, ... }:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            # vimPlugins that lack license are automatically marked unfree
+            # (even when they are actually not)
+            # must allow unfree for successful evaluation
+            config.allowUnfreePredicate = pkg: pkg.passthru.vimPlugin;
+            overlays = [ tree-sitter-atob.overlays.${system}.default ];
+          };
+          module = nixpkgs.lib.modules.importApply nix/module inputs;
+          wrapper = wrappers.lib.evalModule module;
+        in
         {
-          packages.default =
-            let
-              module = nixpkgs.lib.modules.importApply nix/module inputs;
-              wrapper = wrappers.lib.evalModule module;
-              pkgs = import nixpkgs {
-                inherit system;
-                # vimPlugins that lack license are automatically marked unfree
-                # (even when they are actually not)
-                # must allow unfree for successful evaluation
-                config.allowUnfreePredicate = pkg: pkg.passthru.vimPlugin;
-                overlays = [ tree-sitter-atob.overlays.${system}.default ];
-              };
-            in
-            wrapper.config.wrap { inherit pkgs; };
+          packages.default = wrapper.config.wrap { inherit pkgs; };
+          devShells.default = pkgs.mkShell {
+            packages = with pkgs; [
+              just
+              python3
+              cachix
+            ];
+          };
         };
       systems = [
         "x86_64-linux"
